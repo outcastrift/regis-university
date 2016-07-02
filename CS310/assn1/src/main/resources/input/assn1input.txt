@@ -1,0 +1,2 @@
+DONOR,1,George,Washington,gwashington@mtvernon.com,202-123-4567
+DONATION,101,1,Leadership contribution,100.00,7/4/1776,Y,1001

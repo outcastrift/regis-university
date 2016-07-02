@@ -1,0 +1,38 @@
+Integer[] array = [1,2,3,4,5,6,7,8,9];
+
+Integer[] temp = new Integer[0];
+
+int search = 6;
+/**
+Will loop through a array using a binary algorithm.  For the purpose of this example I did not place any sort of checks to keep this from infinitely looping. In a real program you would need to do so.
+A example would be what if : I sent a array to the method that did not contain a value at all, this method in it's current state would infinitely loop trying to find it.
+**/
+private boolean isValueInArray(){
+
+boolean found =false;
+
+while(!found){
+
+int x = (array.length / 2) +1;
+
+if(x==search){
+
+found =true;
+
+}else if (x < search){
+
+temp = Arrays.copyOfRange(array, x , (array.length - 1));
+
+array = temp;
+
+}else if (x > search ){
+
+temp = Arrays.copyOfRange(array, 0 , (x-1));
+
+array=temp;
+
+}
+
+}
+
+}
