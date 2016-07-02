@@ -89,9 +89,8 @@ public class Donation {
      * @param donation   and then
      * @param attributes and populates a
      * @return donation <p> Attributes must be in this specified order: Integer donationId Integer donorId String donationDescription Double donationAmount String donationDate Boolean isDonationTaxDeductible Integer donationCheckNumber
-     * @throws IllegalArgumentException the illegal argument exception
      */
-    public static Donation setDonationAttributes(Donation donation, String[] attributes) throws IllegalArgumentException {
+    public static Donation setDonationAttributes(Donation donation, String[] attributes) {
         Integer donationId = Integer.valueOf(attributes[1]);
         donation.setDonationId(donationId);
         Integer donorID = Integer.valueOf(attributes[2]);
@@ -102,7 +101,7 @@ public class Donation {
         donation.setIsDonationTaxDeductible(Boolean.valueOf(attributes[6]));
         donation.setDonationCheckNumber(Integer.valueOf(attributes[7]));
         if (!isCheckValid(donation.getDonationCheckNumber())) {
-            throw new IllegalArgumentException("ERROR : The check number supplied during creation of the donation was invalid. Check number must be within the range of 100 to 5000 Check Number = "
+            System.out.println("ERROR : The check number supplied during creation of the donation was invalid. Check number must be within the range of 100 to 5000 Check Number = "
                     + donation.getDonationCheckNumber());
         }
 

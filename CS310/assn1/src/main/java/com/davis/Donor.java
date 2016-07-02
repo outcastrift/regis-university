@@ -61,9 +61,8 @@ public class Donor {
      * @param donor      and then
      * @param attributes and populates a
      * @return donor <p> Attributes must be in this specified order: Integer donorId, String donorFirstName, String donorLastName, String donorEmailAddress String donorPhoneNumber
-     * @throws IllegalArgumentException the illegal argument exception
      */
-    public static Donor setDonorAttributes(Donor donor, String[] attributes) throws IllegalArgumentException {
+    public static Donor setDonorAttributes(Donor donor, String[] attributes) {
         Integer integer = Integer.valueOf(attributes[1]);
         donor.setDonorId(integer);
         donor.setDonorFirstName(attributes[2]);
@@ -71,7 +70,7 @@ public class Donor {
         donor.setDonorPhoneNumber(attributes[5]);
         donor.setDonorEmailAddress(attributes[4]);
         if (!isEmailValid(donor.getDonorEmailAddress())) {
-            throw new IllegalArgumentException("ERROR : The email supplied during creation of a Donor was invalid. Email did not contain a \"@\" symbol"
+            System.out.println("ERROR : The email supplied during creation of a Donor was invalid. Email did not contain a \"@\" symbol"
                     + donor.getDonorEmailAddress());
         }
 
@@ -200,11 +199,25 @@ public class Donor {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else {
-            return false;
+        Donor donor = (Donor) obj;
+        boolean isEqual = true;
+
+        if(!donor.getDonorEmailAddress().trim().equalsIgnoreCase(donorEmailAddress)){
+            isEqual =false;
         }
+        if(!donor.getDonorFirstName().trim().equalsIgnoreCase(donorFirstName)){
+            isEqual =false;
+        }
+        if(!donor.getDonorId().equals(donorId)){
+            isEqual =false;
+        }
+        if(!donor.getDonorLastName().trim().equalsIgnoreCase(donorLastName)){
+            isEqual =false;
+        }
+        if(!donor.getDonorPhoneNumber().trim().equalsIgnoreCase(donorPhoneNumber)){
+            isEqual =false;
+        }
+        return isEqual;
     }
 
     @Override
