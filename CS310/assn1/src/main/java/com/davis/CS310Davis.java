@@ -185,6 +185,7 @@ public class CS310Davis {
         File file = null;
         try {
             file = new File(classLoader.getResource(fileName).getFile());
+            //file = new File(fileName);
         } catch (Exception e) {
             System.out.println("ERROR : The file " + fileName + " was unable to be found");
             wasSuccessful =false;
