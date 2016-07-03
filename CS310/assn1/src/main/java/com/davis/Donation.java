@@ -114,13 +114,13 @@ public class Donation {
      * @param donation the donation
      */
     public static void getDonationAttributes(Donation donation) {
-        System.out.println(donation.getDonationId() + "\n");
-        System.out.println(donation.getDonorId() + "\n");
-        System.out.println(donation.getDonationDescription() + "\n");
-        System.out.println(donation.getDonationAmount() + "\n");
-        System.out.println(donation.getDonationDate() + "\n");
-        System.out.println(donation.getIsDonationTaxDeductible() + "\n");
-        System.out.println(donation.getDonationCheckNumber() + "\n");
+        System.out.println(donation.getDonationId() );
+        System.out.println(donation.getDonorId() );
+        System.out.println(donation.getDonationDescription() );
+        System.out.println(donation.getDonationAmount() );
+        System.out.println(donation.getDonationDate() );
+        System.out.println(donation.getIsDonationTaxDeductible() );
+        System.out.println(donation.getDonationCheckNumber() );
 
 
     }

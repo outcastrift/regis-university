@@ -83,11 +83,11 @@ public class Donor {
      * @param donor the donor
      */
     public static void getDonorAttributes(Donor donor) {
-        System.out.println(donor.getDonorId() + "\n");
-        System.out.println(donor.getDonorFirstName() + "\n");
-        System.out.println(donor.getDonorLastName() + "\n");
-        System.out.println(donor.getDonorPhoneNumber() + "\n");
-        System.out.println(donor.getDonorEmailAddress() + "\n");
+        System.out.println(donor.getDonorId() );
+        System.out.println(donor.getDonorFirstName() );
+        System.out.println(donor.getDonorLastName() );
+        System.out.println(donor.getDonorPhoneNumber() );
+        System.out.println(donor.getDonorEmailAddress() );
 
     }
 
@@ -112,7 +112,7 @@ public class Donor {
      *
      * @return the donor email address
      */
-    private String getDonorEmailAddress() {
+    public   String getDonorEmailAddress() {
         return donorEmailAddress;
     }
 
@@ -121,7 +121,7 @@ public class Donor {
      *
      * @param donorEmailAddress the donor email address
      */
-    private void setDonorEmailAddress(String donorEmailAddress) {
+    public void setDonorEmailAddress(String donorEmailAddress) {
         this.donorEmailAddress = donorEmailAddress;
     }
 
@@ -130,7 +130,7 @@ public class Donor {
      *
      * @return the donor first name
      */
-    private String getDonorFirstName() {
+    public String getDonorFirstName() {
         return donorFirstName;
     }
 
@@ -139,7 +139,7 @@ public class Donor {
      *
      * @param donorFirstName the donor first name
      */
-    private void setDonorFirstName(String donorFirstName) {
+    public void setDonorFirstName(String donorFirstName) {
         this.donorFirstName = donorFirstName;
     }
 
@@ -148,7 +148,7 @@ public class Donor {
      *
      * @return the donor id
      */
-    private Integer getDonorId() {
+    public Integer getDonorId() {
         return donorId;
     }
 
@@ -157,7 +157,7 @@ public class Donor {
      *
      * @param donorId the donor id
      */
-    private void setDonorId(Integer donorId) {
+    public void setDonorId(Integer donorId) {
         this.donorId = donorId;
     }
 
@@ -166,7 +166,7 @@ public class Donor {
      *
      * @return the donor last name
      */
-    private String getDonorLastName() {
+    public String getDonorLastName() {
         return donorLastName;
     }
 
@@ -175,7 +175,7 @@ public class Donor {
      *
      * @param donorLastName the donor last name
      */
-    private void setDonorLastName(String donorLastName) {
+    public void setDonorLastName(String donorLastName) {
         this.donorLastName = donorLastName;
     }
 
@@ -184,7 +184,7 @@ public class Donor {
      *
      * @return the donor phone number
      */
-    private String getDonorPhoneNumber() {
+    public String getDonorPhoneNumber() {
         return donorPhoneNumber;
     }
 
@@ -193,7 +193,7 @@ public class Donor {
      *
      * @param donorPhoneNumber the donor phone number
      */
-    private void setDonorPhoneNumber(String donorPhoneNumber) {
+    public void setDonorPhoneNumber(String donorPhoneNumber) {
         this.donorPhoneNumber = donorPhoneNumber;
     }
 
