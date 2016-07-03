@@ -247,7 +247,7 @@ public class CS310Davis {
         System.out.println("###### BEGINNING TEST SET 3 #####");
         boolean testSet3A = testDonorObjectsEquals(shouldDonorsBeEqual);
         boolean testSet3B = testDonationObjectsEquals(shouldDonationsBeEqual);
-        if(!testSet3A && !testSet3B){
+        if(!testSet3A || !testSet3B){
             wasSuccessful =false;
         }
 
@@ -258,7 +258,6 @@ public class CS310Davis {
     private static boolean testDonorObjectsEquals(boolean shouldDonorsBeEqual){
         boolean wasSuccessful =true;
         System.out.println("###### START TEST 3A : Equals method Donor #####");
-        System.out.println("Supplying two different donor objects.");
 
         if(shouldDonorsBeEqual){
             System.out.println("Supplying two identical donor objects.");
@@ -278,6 +277,8 @@ public class CS310Davis {
                 System.out.println("Donor objects are not equal.");
             }
         }else{
+            System.out.println("Supplying two different donor objects.");
+
             Donor donorDifferent = new Donor(1000, "Not", "TheSame", "315-281-5502", "sam.davis@techngs.com");
             if (donorTestSet3.equals(donorDifferent)) {
                 System.out.println("Donor objects are equal.");
@@ -310,6 +311,7 @@ public class CS310Davis {
                 wasSuccessful =true;
             }else {
                 System.out.println("Donation objects are not equal.");
+                wasSuccessful =false;
             }
         }else{
             System.out.println("Supplying two different donation objects.");
@@ -318,6 +320,7 @@ public class CS310Davis {
 
             if (donationTestSet3.equals(donationDifferent)) {
                 System.out.println("Donation objects are equal.");
+                wasSuccessful =false;
             } else {
                 System.out.println("Donation objects are not equal.");
                 wasSuccessful =true;
