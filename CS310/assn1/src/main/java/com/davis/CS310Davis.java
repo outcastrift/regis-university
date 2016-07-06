@@ -218,9 +218,9 @@ public class CS310Davis {
         //Instantiate New Object
         Donor d = new Donor();
         //Set values on Object
-        Donor.setDonorAttributes(d, attributes);
+        setDonorAttributes( attributes);
         //Printing Attributes to Console
-        Donor.getDonorAttributes(d);
+        getDonorAttributes(d);
         System.out.println("###### END TEST 2A #####");
     }
 
@@ -329,6 +329,38 @@ public class CS310Davis {
         System.out.println("###### END TEST 3B : Equals method Donation#####");
         return wasSuccessful;
     }
+    /**
+     * Gets donor attributes.
+     *
+     * @param donor the donor
+     */
+    public static void getDonorAttributes(Donor donor) {
+        System.out.println(donor.getDonorId() );
+        System.out.println(donor.getDonorFirstName() );
+        System.out.println(donor.getDonorLastName() );
+        System.out.println(donor.getDonorPhoneNumber() );
+        System.out.println(donor.getDonorEmailAddress() );
 
+    }
+    /**
+     * Takes a String[]
+     * @param attributes and populates a
+     * @return donor <p> Attributes must be in this specified order: Integer donorId, String donorFirstName, String donorLastName, String donorEmailAddress String donorPhoneNumber
+     */
+    public static Donor setDonorAttributes(  String[] attributes) {
+        Donor donor = new Donor();
+        Integer integer = Integer.valueOf(attributes[1]);
+        donor.setDonorId(integer);
+        donor.setDonorFirstName(attributes[2]);
+        donor.setDonorLastName(attributes[3]);
+        donor.setDonorPhoneNumber(attributes[5]);
+        donor.setDonorEmailAddress(attributes[4]);
+        if (!donor.isEmailValid(donor.getDonorEmailAddress())) {
+            System.out.println("ERROR : The email supplied during creation of a Donor was invalid. Email did not contain a \"@\" symbol"
+                    + donor.getDonorEmailAddress());
+        }
+
+        return donor;
+    }
 
 }

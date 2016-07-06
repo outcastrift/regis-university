@@ -55,41 +55,9 @@ public class Donor {
 
     }
 
-    /**
-     * Takes a String[]
-     *
-     * @param donor      and then
-     * @param attributes and populates a
-     * @return donor <p> Attributes must be in this specified order: Integer donorId, String donorFirstName, String donorLastName, String donorEmailAddress String donorPhoneNumber
-     */
-    public static Donor setDonorAttributes(Donor donor, String[] attributes) {
-        Integer integer = Integer.valueOf(attributes[1]);
-        donor.setDonorId(integer);
-        donor.setDonorFirstName(attributes[2]);
-        donor.setDonorLastName(attributes[3]);
-        donor.setDonorPhoneNumber(attributes[5]);
-        donor.setDonorEmailAddress(attributes[4]);
-        if (!isEmailValid(donor.getDonorEmailAddress())) {
-            System.out.println("ERROR : The email supplied during creation of a Donor was invalid. Email did not contain a \"@\" symbol"
-                    + donor.getDonorEmailAddress());
-        }
 
-        return donor;
-    }
 
-    /**
-     * Gets donor attributes.
-     *
-     * @param donor the donor
-     */
-    public static void getDonorAttributes(Donor donor) {
-        System.out.println(donor.getDonorId() );
-        System.out.println(donor.getDonorFirstName() );
-        System.out.println(donor.getDonorLastName() );
-        System.out.println(donor.getDonorPhoneNumber() );
-        System.out.println(donor.getDonorEmailAddress() );
 
-    }
 
     /**
      * Checks if a email is valid by looking for a @ symbol.
@@ -97,14 +65,8 @@ public class Donor {
      * @param donorEmailAddress the email
      * @return the boolean
      */
-    private static boolean isEmailValid(String donorEmailAddress) {
-        if (!donorEmailAddress.contains("@")) {
-            //email doesn't contain the @ symbol
-            return false;
-        } else {
-            //email does contain the @ symbol
-            return true;
-        }
+    public boolean isEmailValid(String donorEmailAddress) {
+       return (donorEmailAddress.contains("@"));
     }
 
     /**
