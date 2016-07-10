@@ -55,42 +55,9 @@ public class Donor {
 
     }
 
-    /**
-     * Populates a Donor object with supplied values from a String[].
-     *
-     * @param donor      and then
-     * @param attributes and populates a
-     * @return donor <p> Attributes must be in this specified order: Integer donorId, String
-     * donorFirstName, String donorLastName, String donorEmailAddress String donorPhoneNumber
-     */
-    public static Donor setDonorAttributes(Donor donor, String[] attributes)  {
-        Integer integer = Integer.valueOf(attributes[2]);
-        donor.setDonorId(integer);
-        donor.setDonorFirstName(attributes[3]);
-        donor.setDonorLastName(attributes[4]);
-        donor.setDonorEmailAddress(attributes[5]);
-        if (!isEmailValid(donor.getDonorEmailAddress())) {
-            System.out.println("ERROR : The email supplied during creation of a Donor was invalid. Email did not contain a \"@\" symbol"
-                    + donor.getDonorEmailAddress());
-        }
-        donor.setDonorPhoneNumber(attributes[6]);
 
-        return donor;
-    }
 
-    /**
-     * Gets donor attributes and then prints them out to the console.
-     *
-     * @param donor the donor
-     */
-    public static void getDonorAttributes(Donor donor) {
-        System.out.println(donor.getDonorId() + "\n");
-        System.out.println(donor.getDonorFirstName() + "\n");
-        System.out.println(donor.getDonorLastName() + "\n");
-        System.out.println(donor.getDonorPhoneNumber() + "\n");
-        System.out.println(donor.getDonorEmailAddress() + "\n");
 
-    }
 
     /**
      * Checks if a email is valid by looking for a @ symbol.
@@ -98,14 +65,8 @@ public class Donor {
      * @param donorEmailAddress the email
      * @return the boolean
      */
-    public static boolean isEmailValid(String donorEmailAddress) {
-        if (!donorEmailAddress.contains("@")) {
-            //email doesn't contain the @ symbol
-            return false;
-        } else {
-            //email does contain the @ symbol
-            return true;
-        }
+    public boolean isEmailValid(String donorEmailAddress) {
+       return (donorEmailAddress.contains("@"));
     }
 
     /**
@@ -206,11 +167,25 @@ public class Donor {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else {
-            return false;
+        Donor donor = (Donor) obj;
+        boolean isEqual = true;
+
+        if(!donor.getDonorEmailAddress().trim().equalsIgnoreCase(donorEmailAddress)){
+            isEqual =false;
         }
+        if(!donor.getDonorFirstName().trim().equalsIgnoreCase(donorFirstName)){
+            isEqual =false;
+        }
+        if(!donor.getDonorId().equals(donorId)){
+            isEqual =false;
+        }
+        if(!donor.getDonorLastName().trim().equalsIgnoreCase(donorLastName)){
+            isEqual =false;
+        }
+        if(!donor.getDonorPhoneNumber().trim().equalsIgnoreCase(donorPhoneNumber)){
+            isEqual =false;
+        }
+        return isEqual;
     }
 
     /**
@@ -221,7 +196,7 @@ public class Donor {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\nDonor :: ID = ").append(donorId).append("\n");
+        sb.append("Donor :: ID = ").append(donorId).append("\n");
         sb.append("Donor :: First Name = ").append(donorFirstName).append("\n");
         sb.append("Donor :: Last Name = ").append(donorLastName).append("\n");
         sb.append("Donor :: Phone Number = ").append(donorPhoneNumber).append("\n");

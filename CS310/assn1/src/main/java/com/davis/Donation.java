@@ -228,6 +228,12 @@ public class Donation {
         this.isDonationTaxDeductible = isDonationTaxDeductible;
     }
 
+    /**
+     * Equals boolean.
+     *
+     * @param obj the obj
+     * @return the boolean
+     */
     @Override
     public boolean equals(Object obj) {
         Donation donation = (Donation)obj;

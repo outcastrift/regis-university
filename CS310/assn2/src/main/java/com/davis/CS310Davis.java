@@ -49,7 +49,7 @@ public class CS310Davis {
      */
     public static void processDonorAddition (String [] inputLineValues) {
         Donor d = new Donor();
-        Donor.setDonorAttributes(d, inputLineValues);
+        setDonorAttributes( inputLineValues);
         if(donorLogImpl.isIdUnique(d.getDonorId())){
             donorLogImpl.add(d);
         }else{
@@ -69,7 +69,7 @@ public class CS310Davis {
      */
     public static void processDonationAddition (String [] inputLineValues) {
         Donation dn = new Donation();
-        Donation.setDonationAttributes(dn, inputLineValues);
+        setDonationAttributes( inputLineValues);
 
         if(!donorLogImpl.isIdUnique(dn.getDonorId())){
             if(donationLogImpl.isIdUnique(dn.getDonationId())){
@@ -181,5 +181,78 @@ public class CS310Davis {
     public static void createReport() {
     printImpl.printReportToDirectory();
     }
+    /**
+     * Gets donor attributes.
+     *
+     * @param donor the donor
+     */
+    public static void getDonorAttributes(Donor donor) {
+        System.out.println(donor.getDonorId() );
+        System.out.println(donor.getDonorFirstName() );
+        System.out.println(donor.getDonorLastName() );
+        System.out.println(donor.getDonorPhoneNumber() );
+        System.out.println(donor.getDonorEmailAddress() );
 
+    }
+    /**
+     * Takes a String[]
+     * @param attributes and populates a
+     * @return donor <p> Attributes must be in this specified order: Integer donorId, String donorFirstName, String donorLastName, String donorEmailAddress String donorPhoneNumber
+     */
+    public static Donor setDonorAttributes(  String[] attributes) {
+        Donor donor = new Donor();
+        Integer integer = Integer.valueOf(attributes[1]);
+        donor.setDonorId(integer);
+        donor.setDonorFirstName(attributes[2]);
+        donor.setDonorLastName(attributes[3]);
+        donor.setDonorPhoneNumber(attributes[5]);
+        donor.setDonorEmailAddress(attributes[4]);
+        if (!donor.isEmailValid(donor.getDonorEmailAddress())) {
+            System.out.println("ERROR : The email supplied during creation of a Donor was invalid. Email did not contain a \"@\" symbol"
+                    + donor.getDonorEmailAddress());
+        }
+
+        return donor;
+    }
+
+    /**
+     * Sets donation attributes.
+     * @param attributes and populates a
+     * @return donation <p> Attributes must be in this specified order: Integer donationId Integer donorId String donationDescription Double donationAmount String donationDate Boolean isDonationTaxDeductible Integer donationCheckNumber
+     */
+    public static Donation setDonationAttributes(String[] attributes) {
+        Donation donation = new Donation();
+        Integer donationId = Integer.valueOf(attributes[1]);
+        donation.setDonationId(donationId);
+        Integer donorID = Integer.valueOf(attributes[2]);
+        donation.setDonorId(donorID);
+        donation.setDonationDescription(donation.shortenDescription(attributes[3]));
+        donation.setDonationAmount(Double.parseDouble(attributes[4]));
+        donation.setDonationDate(attributes[5]);
+        donation.setIsDonationTaxDeductible(Boolean.valueOf(attributes[6]));
+        donation.setDonationCheckNumber(Integer.valueOf(attributes[7]));
+        if (!donation.isCheckValid(donation.getDonationCheckNumber())) {
+            System.out.println("ERROR : The check number supplied during creation of the donation was invalid. Check number must be within the range of 100 to 5000 Check Number = "
+                    + donation.getDonationCheckNumber());
+        }
+
+        return donation;
+    }
+
+    /**
+     * Gets donation attributes.
+     *
+     * @param donation the donation
+     */
+    public static void getDonationAttributes(Donation donation) {
+        System.out.println(donation.getDonationId() );
+        System.out.println(donation.getDonorId() );
+        System.out.println(donation.getDonationDescription() );
+        System.out.println(donation.getDonationAmount() );
+        System.out.println(donation.getDonationDate() );
+        System.out.println(donation.getIsDonationTaxDeductible() );
+        System.out.println(donation.getDonationCheckNumber() );
+
+
+    }
 }

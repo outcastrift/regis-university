@@ -69,7 +69,7 @@ public class DonorLogImpl {
      * @return true if successful
      *          false otherwise
      */
-// remove donor with donorId from list
+    // remove donor with donorId from list
     // and return true if successful
     public boolean remove(int donorId) {
         try {
@@ -96,12 +96,7 @@ public class DonorLogImpl {
 
                 }
             }
-
-
         return true;
-
-
-
     }
 
 }
