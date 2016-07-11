@@ -64,13 +64,7 @@ public class Donor {
      * @return the boolean
      */
     public boolean isEmailValid(String donorEmailAddress) {
-        if (!donorEmailAddress.contains("@")) {
-            //email doesn't contain the @ symbol
-            return false;
-        } else {
-            //email does contain the @ symbol
-            return true;
-        }
+        return (donorEmailAddress.contains("@"));
     }
 
     /**

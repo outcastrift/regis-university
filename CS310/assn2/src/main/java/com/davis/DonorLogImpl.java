@@ -1,6 +1,7 @@
 package com.davis;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * This class is a implementation class to access the Donor Database, it contains functions to ensure that
@@ -47,19 +48,27 @@ public class DonorLogImpl {
         }
         Donor dd= null;
         if(!donorArray.isEmpty()){
+
+        int targetStorage =0;
             for (int i = 0; i < donorArray.size(); i++) {
                 dd = donorArray.get(i);
                 if (donor.getDonorId() > dd.getDonorId()) {
-                    donorArray.add(i + 1, donor);
-                    break;
+                    targetStorage = i+1;
+                }else{
+                    targetStorage =i;
                 }
             }
+            donorArray.add(targetStorage, donor);
+
         }else{
             donorArray.add(donor);
         }
 
 
     }
+
+
+
 
 
     /**
