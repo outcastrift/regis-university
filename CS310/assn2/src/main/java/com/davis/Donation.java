@@ -254,11 +254,33 @@ public class Donation {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else {
-            return false;
+        Donation donation = (Donation)obj;
+        boolean isEqual = true;
+
+        if (!donation.getDonorId().equals(donorId)){
+            isEqual=false;
         }
+        if (!donation.getIsDonationTaxDeductible() == isDonationTaxDeductible){
+            isEqual=false;
+        }
+        if (!donation.getDonationAmount().equals(donationAmount)){
+            isEqual=false;
+        }
+        if (!donation.getDonationCheckNumber().equals(donationCheckNumber)){
+            isEqual=false;
+        }
+        if (!donation.getDonationDate().trim().equalsIgnoreCase(donationDate)){
+            isEqual=false;
+        }
+        if (!donation.getDonationDescription().trim().equalsIgnoreCase(donationDescription)){
+            isEqual=false;
+        }
+        if (!donation.getDonationId().equals(donationId)){
+            isEqual=false;
+        }
+
+
+        return isEqual;
     }
 
     /**

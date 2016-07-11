@@ -171,11 +171,25 @@ public class Donor {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else {
-            return false;
+        Donor donor = (Donor) obj;
+        boolean isEqual = true;
+
+        if(!donor.getDonorEmailAddress().trim().equalsIgnoreCase(donorEmailAddress)){
+            isEqual =false;
         }
+        if(!donor.getDonorFirstName().trim().equalsIgnoreCase(donorFirstName)){
+            isEqual =false;
+        }
+        if(!donor.getDonorId().equals(donorId)){
+            isEqual =false;
+        }
+        if(!donor.getDonorLastName().trim().equalsIgnoreCase(donorLastName)){
+            isEqual =false;
+        }
+        if(!donor.getDonorPhoneNumber().trim().equalsIgnoreCase(donorPhoneNumber)){
+            isEqual =false;
+        }
+        return isEqual;
     }
 
     /**
