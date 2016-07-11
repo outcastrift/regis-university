@@ -57,8 +57,6 @@ public class Donor {
 
 
 
-
-
     /**
      * Checks if a email is valid by looking for a @ symbol.
      *
@@ -66,7 +64,13 @@ public class Donor {
      * @return the boolean
      */
     public boolean isEmailValid(String donorEmailAddress) {
-       return (donorEmailAddress.contains("@"));
+        if (!donorEmailAddress.contains("@")) {
+            //email doesn't contain the @ symbol
+            return false;
+        } else {
+            //email does contain the @ symbol
+            return true;
+        }
     }
 
     /**
@@ -167,25 +171,11 @@ public class Donor {
      */
     @Override
     public boolean equals(Object obj) {
-        Donor donor = (Donor) obj;
-        boolean isEqual = true;
-
-        if(!donor.getDonorEmailAddress().trim().equalsIgnoreCase(donorEmailAddress)){
-            isEqual =false;
+        if (this == obj) {
+            return true;
+        } else {
+            return false;
         }
-        if(!donor.getDonorFirstName().trim().equalsIgnoreCase(donorFirstName)){
-            isEqual =false;
-        }
-        if(!donor.getDonorId().equals(donorId)){
-            isEqual =false;
-        }
-        if(!donor.getDonorLastName().trim().equalsIgnoreCase(donorLastName)){
-            isEqual =false;
-        }
-        if(!donor.getDonorPhoneNumber().trim().equalsIgnoreCase(donorPhoneNumber)){
-            isEqual =false;
-        }
-        return isEqual;
     }
 
     /**
@@ -196,7 +186,7 @@ public class Donor {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Donor :: ID = ").append(donorId).append("\n");
+        sb.append("\nDonor :: ID = ").append(donorId).append("\n");
         sb.append("Donor :: First Name = ").append(donorFirstName).append("\n");
         sb.append("Donor :: Last Name = ").append(donorLastName).append("\n");
         sb.append("Donor :: Phone Number = ").append(donorPhoneNumber).append("\n");

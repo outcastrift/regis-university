@@ -88,6 +88,23 @@ public class Donation {
 
 
     /**
+     * Gets donation attributes.
+     *
+     * @param donation the donation
+     */
+    public static void getDonationAttributes(Donation donation) {
+        System.out.println(donation.getDonationId() + "\n");
+        System.out.println(donation.getDonorId() + "\n");
+        System.out.println(donation.getDonationDescription() + "\n");
+        System.out.println(donation.getDonationAmount() + "\n");
+        System.out.println(donation.getDonationDate() + "\n");
+        System.out.println(donation.getIsDonationTaxDeductible() + "\n");
+        System.out.println(donation.getDonationCheckNumber() + "\n");
+
+
+    }
+
+    /**
      * Is check valid boolean.
      *
      * @param donationCheckNumber the donation check number
@@ -237,39 +254,22 @@ public class Donation {
      */
     @Override
     public boolean equals(Object obj) {
-        Donation donation = (Donation)obj;
-        boolean isEqual = true;
-
-        if (!donation.getDonorId().equals(donorId)){
-            isEqual=false;
+        if (this == obj) {
+            return true;
+        } else {
+            return false;
         }
-        if (!donation.getIsDonationTaxDeductible() == isDonationTaxDeductible){
-            isEqual=false;
-        }
-        if (!donation.getDonationAmount().equals(donationAmount)){
-        isEqual=false;
-        }
-        if (!donation.getDonationCheckNumber().equals(donationCheckNumber)){
-            isEqual=false;
-        }
-        if (!donation.getDonationDate().trim().equalsIgnoreCase(donationDate)){
-            isEqual=false;
-        }
-        if (!donation.getDonationDescription().trim().equalsIgnoreCase(donationDescription)){
-            isEqual=false;
-        }
-        if (!donation.getDonationId().equals(donationId)){
-            isEqual=false;
-        }
-
-
-        return isEqual;
     }
 
+    /**
+     * To string string.
+     *
+     * @return the string
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Donation :: ID = ").append(String.valueOf(donationId)).append("\n");
+        sb.append("\nDonation :: ID = ").append(String.valueOf(donationId)).append("\n");
         sb.append("Donation :: Donor ID = ").append(String.valueOf(donorId)).append("\n");
         sb.append("Donation :: Amount = ").append(String.valueOf(donationAmount)).append("\n");
         sb.append("Donation :: Date = ").append(donationDate).append("\n");
