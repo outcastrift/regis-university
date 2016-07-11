@@ -1,7 +1,6 @@
 package com.davis;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * This class is a implementation class to access the Donor Database, it contains functions to ensure that
@@ -27,7 +26,7 @@ public class DonorLogImpl {
      *
      * @return Donor Database
      */
-// return the ArrayList attribute
+    // return the ArrayList attribute
     public ArrayList<Donor> getDonorList() {
         return this.donorArray;
     }
@@ -37,7 +36,7 @@ public class DonorLogImpl {
      * @param obj the obj
      *            obj must be of type Donor otherwise this method will print a error and exit.
      */
-// add donor to ordered list
+    // add donor to ordered list
     public void add(Object obj) {
         Donor donor = null;
         try{
