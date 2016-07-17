@@ -19,16 +19,18 @@ public class PrintImpl {
     /**
      * The Output filename/location.
      */
-    final String OUTPUT_FILENAME = "output/assn2report.txt";
+    final String OUTPUT_DIRECTORY = "output/";
 
 
     /**
-     * Creates a report and outputs it to the ../output directory. The output directory is relative
+     * Creates a report and outputs it to the ../output directory with the
+     * @param filename the filename to use
+     * The output directory is relative
      * to the location in which the class was run. For each donor within the Database a table is
      * created containing his total amount of donations, total amount of donations, and whether or
      * not he is a GOLDSTAR contributor.
      */
-    public void printReportToDirectory() {
+    public void printReportToDirectory(String filename) {
         DonationLogImpl donations = CS310Davis.donationLogImpl;
         DonorLogImpl donors = CS310Davis.donorLogImpl;
         int totalDonationsForAll = 0;
@@ -36,7 +38,7 @@ public class PrintImpl {
 
         PrintWriter writer = null;
         try {
-            File file = new File(OUTPUT_FILENAME);
+            File file = new File(OUTPUT_DIRECTORY + filename);
             file.getParentFile().mkdirs();
             writer = new PrintWriter(file, "UTF-8");
         } catch (FileNotFoundException e) {

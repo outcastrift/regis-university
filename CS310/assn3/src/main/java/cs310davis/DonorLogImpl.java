@@ -79,13 +79,14 @@ public class DonorLogImpl {
     // remove donor with donorId from list
     // and return true if successful
     public boolean remove(int donorId) {
+        boolean wasRemoved = true;
         try {
             donorArray.remove(donorId);
-            return true;
         } catch (Exception e) {
             System.out.println("ERROR: Unable to remove Donor from the List \n " + e.getMessage());
-            return false;
+            wasRemoved = false;
         }
+        return wasRemoved;
     }
 
     /**
@@ -112,6 +113,12 @@ public class DonorLogImpl {
     private void traverseDisplay() {
         System.out.println("Donor List : \n");
         //Traverse the list of donors using toString() to display each object in the list.
+    }
+
+    //TODO
+    //FIXME
+    private void cleanUp() {
+        //validate and clean up the donor list
     }
 
 

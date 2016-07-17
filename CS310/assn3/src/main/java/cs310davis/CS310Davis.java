@@ -243,4 +243,19 @@ public class CS310Davis {
         printImpl.printReportToDirectory();
     }
 
+
+    /**
+     * You will start with the same main method that you used for Assn 2.
+     * After reading the data and creating the initial report, add the code to the end of the main method to:
+     * Display each list, using the traverseDisplay() methods.
+     * Clean up the lists.
+     * Create the second report.
+     **/
+
+    public static void createCleanReport() {
+        //Display Each list using the traverseDisplay() methods.
+        // Clean up each list by executing the cleanUp() method within each.
+        // Create the report.
+    }
+
 }

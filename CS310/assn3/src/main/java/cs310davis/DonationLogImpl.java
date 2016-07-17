@@ -38,13 +38,15 @@ public class DonationLogImpl {
      */
 
     public boolean add(Object obj) {
+        boolean added = true;
         if (obj instanceof Donation) {
             Donation donation = (Donation) obj;
             donationArray.add(donation);
-            return true;
+
         } else {
-            return false;
+            added = false;
         }
+        return added;
     }
 
     /**
@@ -110,8 +112,6 @@ public class DonationLogImpl {
                 break;
             }
         }
-
-
         return isUnique;
 
     }
@@ -182,6 +182,12 @@ public class DonationLogImpl {
         //Traverse the list of donations using toString() to display each object in the list.
     }
 
+
+    //TODO
+    //FIXME
+    private void cleanUp() {
+        //validate and clean up the donation list
+    }
 
 
 }
