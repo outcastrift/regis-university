@@ -30,6 +30,9 @@ public class PrintImpl {
     public  void printReportToDirectory(){
     DonationLogImpl donations = CS310Davis.donationLogImpl;
     DonorLogImpl donors = CS310Davis.donorLogImpl;
+        int totalDonationsForAll = 0;
+        double totalDonationAmountForAll = 0;
+
         PrintWriter writer = null;
         try {
             File file = new File(OUTPUT_FILENAME);
@@ -72,13 +75,18 @@ public class PrintImpl {
             if(totalDonationAmount > 10000.00){
                 donorStringBuilder.append("GOLDSTAR");
             }
+            totalDonationsForAll = totalDonations + totalDonationsForAll;
+            totalDonationAmountForAll = totalDonationAmountForAll + totalDonationAmount;
             donorStringBuilder.append(donationStringBuilder.toString());
-            donorStringBuilder.append("Number of total donations for donor : "+ totalDonations)
-                    .append("\nTotal amount of donations for the donor :: "+ totalDonationAmount);
+            donorStringBuilder.append("Number of total donations for donor : " + totalDonations);
+            donorStringBuilder.append("\nTotal amount of donations for the donor :: " + totalDonationAmount);
             donorStringBuilder.append("\n ########################################################################## \n");
 
             writer.println(donorStringBuilder.toString());
         }
+        writer.println("Total number of Donations = [" + totalDonationsForAll + "]");
+        writer.println("Total Dollar Amount of All Donations = [" + totalDonationAmountForAll + "]");
+
         writer.close();
 
     }

@@ -104,15 +104,16 @@ public class DonationLogImpl {
      */
 
     public boolean isIdUnique(int donationId){
-
+        boolean isUnique = true;
             for(Donation dn : donationArray){
                 if(dn.getDonationId()==donationId){
-                    return false;
+                    isUnique = false;
+                    break;
                 }
             }
 
 
-        return true;
+        return isUnique;
 
     }
 
