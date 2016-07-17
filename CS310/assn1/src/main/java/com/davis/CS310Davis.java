@@ -230,9 +230,9 @@ public class CS310Davis {
         //Instantiate New Object
         Donation dn = new Donation();
         //Set values on Object
-        Donation.setDonationAttributes(dn, attributes);
+        setDonationAttributes(attributes);
         //Printing Attributes to Console
-        Donation.getDonationAttributes(dn);
+        getDonationAttributes(dn);
         System.out.println("###### END TEST 2B #####");
     }
 
@@ -361,6 +361,47 @@ public class CS310Davis {
         }
 
         return donor;
+    }
+
+    /**
+     * Sets donation attributes.
+     * @param attributes and populates a
+     * @return donation <p> Attributes must be in this specified order: Integer donationId Integer donorId String donationDescription Double donationAmount String donationDate Boolean isDonationTaxDeductible Integer donationCheckNumber
+     */
+    public static Donation setDonationAttributes(String[] attributes) {
+        Donation donation = new Donation();
+        Integer donationId = Integer.valueOf(attributes[1]);
+        donation.setDonationId(donationId);
+        Integer donorID = Integer.valueOf(attributes[2]);
+        donation.setDonorId(donorID);
+        donation.setDonationDescription(donation.shortenDescription(attributes[3]));
+        donation.setDonationAmount(Double.parseDouble(attributes[4]));
+        donation.setDonationDate(attributes[5]);
+        donation.setIsDonationTaxDeductible(Boolean.valueOf(attributes[6]));
+        donation.setDonationCheckNumber(Integer.valueOf(attributes[7]));
+        if (!donation.isCheckValid(donation.getDonationCheckNumber())) {
+            System.out.println("ERROR : The check number supplied during creation of the donation was invalid. Check number must be within the range of 100 to 5000 Check Number = "
+                    + donation.getDonationCheckNumber());
+        }
+
+        return donation;
+    }
+
+    /**
+     * Gets donation attributes.
+     *
+     * @param donation the donation
+     */
+    public static void getDonationAttributes(Donation donation) {
+        System.out.println(donation.getDonationId() );
+        System.out.println(donation.getDonorId() );
+        System.out.println(donation.getDonationDescription() );
+        System.out.println(donation.getDonationAmount() );
+        System.out.println(donation.getDonationDate() );
+        System.out.println(donation.getIsDonationTaxDeductible() );
+        System.out.println(donation.getDonationCheckNumber() );
+
+
     }
 
 }

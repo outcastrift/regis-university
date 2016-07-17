@@ -75,7 +75,7 @@ public class PrintImpl {
             donorStringBuilder.append(donationStringBuilder.toString());
             donorStringBuilder.append("Number of total donations for donor : "+ totalDonations)
                     .append("\nTotal amount of donations for the donor :: "+ totalDonationAmount);
-            donorStringBuilder.append("########################################################################## \n");
+            donorStringBuilder.append("\n ########################################################################## \n");
 
             writer.println(donorStringBuilder.toString());
         }

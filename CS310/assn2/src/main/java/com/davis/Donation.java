@@ -78,40 +78,14 @@ public class Donation {
      * @param donationDescription the donation description
      * @return the string
      */
-    private static String shortenDescription(String donationDescription) {
+    public static String shortenDescription(String donationDescription) {
         if (donationDescription.length() > 25) {
             donationDescription = donationDescription.substring(0, 25);
         }
         return donationDescription;
     }
 
-    /**
-     * Populates a donation objects with values.
-     *
-     * @param donation   and then
-     * @param attributes and populates a
-     * @return donation <p> Attributes must be in this specified order: Integer donationId Integer
-     * donorId String donationDescription Double donationAmount String donationDate Boolean
-     * isDonationTaxDeductible Integer donationCheckNumber
-     * @throws IllegalArgumentException the illegal argument exception
-     */
-    public static Donation setDonationAttributes(Donation donation, String[] attributes)  {
-        Integer donationId = Integer.valueOf(attributes[2]);
-        donation.setDonationId(donationId);
-        Integer donorID = Integer.valueOf(attributes[3]);
-        donation.setDonorId(donorID);
-        donation.setDonationDescription(shortenDescription(attributes[4]));
-        donation.setDonationAmount(Double.parseDouble(attributes[5]));
-        donation.setDonationDate(attributes[6]);
-        donation.setIsDonationTaxDeductible(Boolean.valueOf(attributes[7]));
-        donation.setDonationCheckNumber(Integer.valueOf(attributes[8]));
-        if (!isCheckValid(donation.getDonationCheckNumber())) {
-            System.out.println("ERROR : The check number supplied during creation of the donation was invalid. Check number must be within the range of 100 to 5000 Check Number = "
-                    + donation.getDonationCheckNumber());
-        }
 
-        return donation;
-    }
 
     /**
      * Gets donation attributes.
@@ -136,7 +110,7 @@ public class Donation {
      * @param donationCheckNumber the donation check number
      * @return the boolean
      */
-    private static boolean isCheckValid(Integer donationCheckNumber) {
+    public static boolean isCheckValid(Integer donationCheckNumber) {
         if (donationCheckNumber > 5000 || donationCheckNumber < 100) {
             //check number is either below 100 or higher than 5000
             return false;
@@ -280,11 +254,33 @@ public class Donation {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else {
-            return false;
+        Donation donation = (Donation)obj;
+        boolean isEqual = true;
+
+        if (!donation.getDonorId().equals(donorId)){
+            isEqual=false;
         }
+        if (!donation.getIsDonationTaxDeductible() == isDonationTaxDeductible){
+            isEqual=false;
+        }
+        if (!donation.getDonationAmount().equals(donationAmount)){
+            isEqual=false;
+        }
+        if (!donation.getDonationCheckNumber().equals(donationCheckNumber)){
+            isEqual=false;
+        }
+        if (!donation.getDonationDate().trim().equalsIgnoreCase(donationDate)){
+            isEqual=false;
+        }
+        if (!donation.getDonationDescription().trim().equalsIgnoreCase(donationDescription)){
+            isEqual=false;
+        }
+        if (!donation.getDonationId().equals(donationId)){
+            isEqual=false;
+        }
+
+
+        return isEqual;
     }
 
     /**

@@ -31,7 +31,7 @@ public class Donor {
 
 
     /**
-     * Instantiates a new Donor.
+     * Instantiates a new Donor with specified parameters.
      *
      * @param donorId           the donor id
      * @param donorFirstName    the donor first name
@@ -74,7 +74,7 @@ public class Donor {
      *
      * @return the donor email address
      */
-    public   String getDonorEmailAddress() {
+    public String getDonorEmailAddress() {
         return donorEmailAddress;
     }
 
@@ -159,6 +159,12 @@ public class Donor {
         this.donorPhoneNumber = donorPhoneNumber;
     }
 
+    /**
+     * Determines if the specified obj is equal to this instance of Donor.
+     *
+     * @param obj the obj
+     * @return the boolean
+     */
     @Override
     public boolean equals(Object obj) {
         Donor donor = (Donor) obj;
@@ -182,6 +188,11 @@ public class Donor {
         return isEqual;
     }
 
+    /**
+     * Creates a string representation of this class.
+     *
+     * @return the string
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -26,7 +26,7 @@ public class DonorLogImpl {
      *
      * @return Donor Database
      */
-// return the ArrayList attribute
+    // return the ArrayList attribute
     public ArrayList<Donor> getDonorList() {
         return this.donorArray;
     }
@@ -36,7 +36,7 @@ public class DonorLogImpl {
      * @param obj the obj
      *            obj must be of type Donor otherwise this method will print a error and exit.
      */
-// add donor to ordered list
+    // add donor to ordered list
     public void add(Object obj) {
         Donor donor = null;
         try{
@@ -47,19 +47,27 @@ public class DonorLogImpl {
         }
         Donor dd= null;
         if(!donorArray.isEmpty()){
+
+        int targetStorage =0;
             for (int i = 0; i < donorArray.size(); i++) {
                 dd = donorArray.get(i);
                 if (donor.getDonorId() > dd.getDonorId()) {
-                    donorArray.add(i + 1, donor);
-                    break;
+                    targetStorage = i+1;
+                }else{
+                    targetStorage =i;
                 }
             }
+            donorArray.add(targetStorage, donor);
+
         }else{
             donorArray.add(donor);
         }
 
 
     }
+
+
+
 
 
     /**
@@ -69,7 +77,7 @@ public class DonorLogImpl {
      * @return true if successful
      *          false otherwise
      */
-// remove donor with donorId from list
+    // remove donor with donorId from list
     // and return true if successful
     public boolean remove(int donorId) {
         try {
@@ -96,12 +104,7 @@ public class DonorLogImpl {
 
                 }
             }
-
-
         return true;
-
-
-
     }
 
 }
