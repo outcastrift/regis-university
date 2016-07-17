@@ -38,7 +38,7 @@ public class CS310Davis {
         processFile();
         // Call the method to create the report.
         createReport();
-        // Call the method to create the cleaned report. 
+        // Call the method to create the cleaned report.
         createCleanReport();
     }
 
@@ -247,11 +247,9 @@ public class CS310Davis {
 
 
     /**
-     * You will start with the same main method that you used for Assn 2.
-     * After reading the data and creating the initial report, add the code to the end of the main method to:
-     * Display each list, using the traverseDisplay() methods.
-     * Clean up the lists.
-     * Create the second report.
+     * This method will execute the traverseDisplay methods from the DonationLogImpl and the DonorLogImpl.
+     * Afterwards it will execute the cleanUp() methods from the DonationLogImpl and the DonorLogImpl.
+     * Once the lists have been cleaned it will execute the printReportToDirectory() method with a different filename.
      **/
 
     public static void createCleanReport() {

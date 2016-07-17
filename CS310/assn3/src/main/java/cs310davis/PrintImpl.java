@@ -29,6 +29,9 @@ public class PrintImpl {
      * to the location in which the class was run. For each donor within the Database a table is
      * created containing his total amount of donations, total amount of donations, and whether or
      * not he is a GOLDSTAR contributor.
+     *
+     * After printing information on each individual donor a total number of donors will be displayed as well as the
+     * total dollar amount of all donations.
      */
     public void printReportToDirectory(String filename) {
         DonationLogImpl donations = CS310Davis.donationLogImpl;
