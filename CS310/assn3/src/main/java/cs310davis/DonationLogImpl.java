@@ -174,4 +174,14 @@ public class DonationLogImpl {
         return result;
     }
 
+
+    //TODO
+    //FIXME
+    private void traverseDisplay() {
+        System.out.println("Donation List : \n");
+        //Traverse the list of donations using toString() to display each object in the list.
+    }
+
+
+
 }

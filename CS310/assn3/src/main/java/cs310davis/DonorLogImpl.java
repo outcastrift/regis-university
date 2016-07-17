@@ -96,14 +96,23 @@ public class DonorLogImpl {
      * false otherwise
      */
     public boolean isIdUnique(int id) {
-
+        boolean isUnique = true;
         for (Donor d : donorArray) {
             if (d.getDonorId() == id) {
-                return false;
-
+                isUnique = false;
+                break;
             }
         }
-        return true;
+        return isUnique;
     }
+
+
+    //TODO
+    //FIXME
+    private void traverseDisplay() {
+        System.out.println("Donor List : \n");
+        //Traverse the list of donors using toString() to display each object in the list.
+    }
+
 
 }
