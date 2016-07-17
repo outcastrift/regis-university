@@ -14,7 +14,7 @@ public class CS310Davis {
     /**
      * The input file to parse.
      */
-    private static final String INPUT_FILENAME = "input/assn2input1.txt";
+    private static final String INPUT_FILENAME = "input/assn3input1.txt";
     /**
      * The Donor log.
      */
@@ -38,6 +38,8 @@ public class CS310Davis {
         processFile();
         // Call the method to create the report.
         createReport();
+        // Call the method to create the cleaned report. 
+        createCleanReport();
     }
 
     /**
@@ -240,7 +242,7 @@ public class CS310Davis {
      * Method to create a report via the PrintImpl.class.
      */
     public static void createReport() {
-        printImpl.printReportToDirectory();
+        printImpl.printReportToDirectory("assn3initialReport.txt");
     }
 
 
@@ -254,8 +256,14 @@ public class CS310Davis {
 
     public static void createCleanReport() {
         //Display Each list using the traverseDisplay() methods.
+        donorLogImpl.traverseDisplay();
+        donationLogImpl.traverseDisplay();
+
         // Clean up each list by executing the cleanUp() method within each.
+        donorLogImpl.cleanUp();
+        donationLogImpl.cleanUp();
         // Create the report.
+        printImpl.printReportToDirectory("assn3cleanReport.txt");
     }
 
 }

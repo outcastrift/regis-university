@@ -177,7 +177,7 @@ public class DonationLogImpl {
 
     //TODO
     //FIXME
-    private void traverseDisplay() {
+    public void traverseDisplay() {
         System.out.println("Donation List : \n");
         //Traverse the list of donations using toString() to display each object in the list.
     }
@@ -185,7 +185,7 @@ public class DonationLogImpl {
 
     //TODO
     //FIXME
-    private void cleanUp() {
+    public void cleanUp() {
         //validate and clean up the donation list
     }
 

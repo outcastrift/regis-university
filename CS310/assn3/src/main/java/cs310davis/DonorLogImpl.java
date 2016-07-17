@@ -110,14 +110,14 @@ public class DonorLogImpl {
 
     //TODO
     //FIXME
-    private void traverseDisplay() {
+    public void traverseDisplay() {
         System.out.println("Donor List : \n");
         //Traverse the list of donors using toString() to display each object in the list.
     }
 
     //TODO
     //FIXME
-    private void cleanUp() {
+    public void cleanUp() {
         //validate and clean up the donor list
     }
 
