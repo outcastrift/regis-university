@@ -16,47 +16,15 @@ public class DonationLogImpl {
     /**
      * The Donation Database.
      */
-    private LinkedList<Donation> donationLinkedList = new LinkedList<Donation>();
-
-
-    /**
-     * Get donation database as array list.
-     *
-     * @return the donation database
-     */
-    public LinkedList<Donation> getDonationList() {
-        // return the ArrayList attribute
-        return this.donationLinkedList;
-
-    }
+    private static LinkedList<Donation> donationLinkedList = new LinkedList<Donation>();
 
     /**
-     * Add donation to the database..
-     *
-     * @param obj the obj
-     * @param obj must be of type Donation otherwise method returns false.
-     * @return false if unsuccessful
-     */
-
-    public boolean add(Object obj) {
-        boolean added = true;
-        if (obj instanceof Donation) {
-            Donation donation = (Donation) obj;
-            donationLinkedList.add(donation);
-
-        } else {
-            added = false;
-        }
-        return added;
-    }
-
-    /**
-     * Remove donations with donorId from list and return true
+     * Remove donations with donorId from list and return true if successful.
      *
      * @param donorId the donor id
      * @return false if nothing was deleted
      */
-    public boolean remove(int donorId) {
+    public static boolean remove(int donorId) {
         boolean result = false;
         try {
             for (Donation dn : donationLinkedList) {
@@ -81,7 +49,7 @@ public class DonationLogImpl {
      * @return false if unsuccessful
      */
 
-    public boolean remove(int donorId, int donationId) {
+    public static boolean remove(int donorId, int donationId) {
         boolean result = false;
         try {
             for (Donation dn : donationLinkedList) {
@@ -95,6 +63,37 @@ public class DonationLogImpl {
 
         }
         return result;
+    }
+
+    /**
+     * Get donation database as array list.
+     *
+     * @return the donation database
+     */
+    public LinkedList<Donation> getDonationList() {
+        // return the ArrayList attribute
+        return donationLinkedList;
+
+    }
+
+    /**
+     * Add donation to the database..
+     *
+     * @param obj the obj
+     * @param obj must be of type Donation otherwise method returns false.
+     * @return false if unsuccessful
+     */
+
+    public boolean add(Object obj) {
+        boolean added = true;
+        if (obj instanceof Donation) {
+            Donation donation = (Donation) obj;
+            donationLinkedList.add(donation);
+
+        } else {
+            added = false;
+        }
+        return added;
     }
 
     /**
@@ -176,28 +175,37 @@ public class DonationLogImpl {
     }
 
 
-    //TODO
-    //FIXME
-
     /**
      * Method to traverse the entire list of Donations executing the toString() method of each Donation.
      **/
     public void traverseDisplay() {
         System.out.println("Donation List : \n");
-        //Traverse the list of donations using toString() to display each object in the list.
+        for (Donation donation : donationLinkedList) {
+            System.out.println(donation.toString());
+        }
     }
 
 
-    //TODO
-    //FIXME
 
     /**
      * Validates the List of Donations by using the isCheckValid() method within the Donation Class.
      * If a check number  is invalid the donation will be removed from the list.
      **/
     public void cleanUp() {
-        //validate and clean up the donation list
-        //All operations performed will be printed to the console.
+        System.out.println("Beginning to Validate the Donation List : \n");
+        Donation donation = null;
+        for (int x = 0; x < donationLinkedList.size(); x++) {
+            donation = donationLinkedList.get(x);
+            if (!Donation.isCheckValid(donation.getDonationCheckNumber())) {
+                System.out.println("The donation with donation ID of [" + donation.getDonationId() + "]" +
+                        " and the donor ID of [" + donation.getDonorId() + "] supplied a invalid check number of [" +
+                        donation.getDonationCheckNumber() + "] and will be removed from the list of donations. ");
+                donationLinkedList.remove(x);
+            }
+        }
+        System.out.println("Finished Validating the Donation List : \n");
+
+
     }
 
 

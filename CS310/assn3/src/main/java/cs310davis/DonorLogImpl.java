@@ -178,8 +178,6 @@ public class DonorLogImpl {
         }
     }
 
-    //TODO
-    //FIXME
 
     /**
      * Validates the List of Donors by using the isEmailValid() method within the Donor Class.
@@ -189,7 +187,22 @@ public class DonorLogImpl {
     public void cleanUp() {
         //validate and clean up the donor list
         //All operations performed upon the list will be printed to the console.
+        System.out.println("Beginning to Validate the Donor List : \n");
+        DonorNode cleanUpList = donorLinkedList;
 
+        while (cleanUpList != null) {
+            Donor d = cleanUpList.getDonor();
+            if (!d.isEmailValid(d.getDonorEmailAddress())) {
+                System.out.println("The donor with donor ID of [" + d.getDonorId() + "]" +
+                        "  supplied a invalid email address of [" +
+                        d.getDonorEmailAddress() + "] and will be removed from the list of donors. ");
+                remove(d.getDonorId());
+                DonationLogImpl.remove(d.getDonorId());
+            }
+            cleanUpList = cleanUpList.getNext();
+
+        }
+        System.out.println("Finished Validating the Donor List : \n");
 
     }
 
