@@ -1,5 +1,7 @@
 package cs310davis;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -26,16 +28,19 @@ public class DonationLogImpl {
      */
     public static boolean remove(int donorId) {
         boolean result = false;
-        try {
-            for (Donation dn : donationLinkedList) {
-                if (dn.getDonorId() == donorId) {
-                    donationLinkedList.remove(dn);
-                    result = true;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("ERROR : Unable to remove donation with donor id of " + donorId + " .");
+        Iterator<Donation> donationIterator = donationLinkedList.iterator();
 
+        Donation dn = null;
+        while (donationIterator.hasNext()) {
+            dn = donationIterator.next();
+            if (dn.getDonorId() == donorId) {
+                donationLinkedList.remove(dn);
+                result = true;
+                break;
+            }
+        }
+        if (!result) {
+            System.out.println("ERROR : Unable to remove donation with donor id of " + donorId + " .");
         }
         return result;
 
@@ -51,17 +56,24 @@ public class DonationLogImpl {
 
     public static boolean remove(int donorId, int donationId) {
         boolean result = false;
-        try {
-            for (Donation dn : donationLinkedList) {
-                if (dn.getDonorId() == donorId && dn.getDonationId() == donationId) {
-                    donationLinkedList.remove(dn);
-                    result = true;
-                }
+
+        Iterator<Donation> donationIterator = donationLinkedList.iterator();
+
+        Donation dn = null;
+        while (donationIterator.hasNext()) {
+            dn = donationIterator.next();
+            if (dn.getDonorId() == donorId && dn.getDonationId() == donationId) {
+                donationIterator.remove();
+                result = true;
+                break;
             }
-        } catch (Exception e) {
-            System.out.println("ERROR : Unable to remove donation with donor id of " + donorId + " and donation with id of " + donationId + " .");
+        }
+        if (!result) {
+            System.out.println("ERROR : Unable to remove donation with donor id of "
+                    + donorId + " and donation with id of " + donationId + " .");
 
         }
+
         return result;
     }
 
@@ -70,7 +82,7 @@ public class DonationLogImpl {
      *
      * @return the donation database
      */
-    public LinkedList<Donation> getDonationList() {
+    public static LinkedList<Donation> getDonationList() {
         // return the ArrayList attribute
         return donationLinkedList;
 
@@ -106,12 +118,18 @@ public class DonationLogImpl {
 
     public boolean isIdUnique(int donationId) {
         boolean isUnique = true;
-        for (Donation dn : donationLinkedList) {
+
+        Iterator<Donation> donationIterator = donationLinkedList.iterator();
+
+        Donation dn = null;
+        while (donationIterator.hasNext()) {
+            dn = donationIterator.next();
             if (dn.getDonationId() == donationId) {
                 isUnique = false;
                 break;
             }
         }
+
         return isUnique;
 
     }
@@ -136,11 +154,16 @@ public class DonationLogImpl {
 
     public int numberOfDonations(int donorId) {
         int result = 0;
-        for (Donation dn : donationLinkedList) {
+        Iterator<Donation> donationIterator = donationLinkedList.iterator();
+
+        Donation dn = null;
+        while (donationIterator.hasNext()) {
+            dn = donationIterator.next();
             if (dn.getDonorId() == donorId) {
                 result = result + 1;
             }
         }
+
         return result;
     }
 
@@ -151,9 +174,14 @@ public class DonationLogImpl {
      */
     public float totalDonationAmount() {
         float result = 0;
-        for (Donation dn : donationLinkedList) {
+        Iterator<Donation> donationIterator = donationLinkedList.iterator();
+
+        Donation dn = null;
+        while (donationIterator.hasNext()) {
+            dn = donationIterator.next();
             result = (float) (result + dn.getDonationAmount());
         }
+
         return result;
     }
 
@@ -166,11 +194,16 @@ public class DonationLogImpl {
 
     public float totalDonationAmount(int donorId) {
         float result = 0;
-        for (Donation dn : donationLinkedList) {
+        Iterator<Donation> donationIterator = donationLinkedList.iterator();
+
+        Donation dn = null;
+        while (donationIterator.hasNext()) {
+            dn = donationIterator.next();
             if (dn.getDonorId() == donorId) {
                 result = (float) (result + dn.getDonationAmount());
             }
         }
+
         return result;
     }
 
@@ -180,8 +213,12 @@ public class DonationLogImpl {
      **/
     public void traverseDisplay() {
         System.out.println("Donation List : \n");
-        for (Donation donation : donationLinkedList) {
-            System.out.println(donation.toString());
+        Iterator<Donation> donationIterator = donationLinkedList.iterator();
+
+        Donation dn = null;
+        while (donationIterator.hasNext()) {
+            dn = donationIterator.next();
+            System.out.println(dn.toString());
         }
     }
 
@@ -193,18 +230,27 @@ public class DonationLogImpl {
      **/
     public void cleanUp() {
         System.out.println("Beginning to Validate the Donation List : \n");
+        Iterator<Donation> donationIterator = donationLinkedList.iterator();
+        //created to avoid a concurrent modification exception
+        //this isn't as clean as it could be
+        ArrayList<Integer> removalList = new ArrayList<Integer>();
+
         Donation donation = null;
-        for (int x = 0; x < donationLinkedList.size(); x++) {
-            donation = donationLinkedList.get(x);
+        int x = -1;
+        while (donationIterator.hasNext()) {
+            x = x + 1;
+            donation = donationIterator.next();
             if (!Donation.isCheckValid(donation.getDonationCheckNumber())) {
                 System.out.println("The donation with donation ID of [" + donation.getDonationId() + "]" +
                         " and the donor ID of [" + donation.getDonorId() + "] supplied a invalid check number of [" +
                         donation.getDonationCheckNumber() + "] and will be removed from the list of donations. ");
-                donationLinkedList.remove(x);
+                donationIterator.remove();
             }
-        }
-        System.out.println("Finished Validating the Donation List : \n");
 
+        }
+
+
+        System.out.println("Finished Validating the Donation List : \n");
 
     }
 

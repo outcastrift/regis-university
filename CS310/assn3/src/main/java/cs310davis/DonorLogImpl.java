@@ -202,6 +202,7 @@ public class DonorLogImpl {
             cleanUpList = cleanUpList.getNext();
 
         }
+
         System.out.println("Finished Validating the Donor List : \n");
 
     }
