@@ -11,10 +11,12 @@ package cs310davis;
  * The last DonorNode within the List will return null on the getNext() signifying the end of the list.
  */
 public class DonorNode {
-
+    //NOTE The code pertaining to a Doubly Linked List remains commented out, I initially did this assignment in that
+    //NOTE manner but realized once I was close to being finished that it was wrong and you asked for a singly LinkedList
+    //NOTE please do not deduct points for these being commented out.
     private Donor donor;
     private DonorNode next;
-
+    //private DonorNode previous;
 
     /**
      * Public DonorNode constructor.
@@ -25,8 +27,16 @@ public class DonorNode {
     public DonorNode(Donor donor, DonorNode next) {
         this.donor = donor;
         this.next = next;
-
     }
+    /*public DonorNode(Donor donor, DonorNode previous, DonorNode next){
+        this.donor = donor;
+        this.next = next;
+        this.previous = previous;
+    }*/
+
+
+
+
 
     /**
      * Returns the Donor stored within this DonorNode.
@@ -61,4 +71,22 @@ public class DonorNode {
     public void setNext(DonorNode next) {
         this.next = next;
     }
+
+
+    /**
+     * Returns a reference to the previous DonorNode within the List.
+     * **/
+   /* public DonorNode getPrevious() {
+        return previous;
+    }*/
+
+    /**
+     * Sets the reference to the previous DonorNode within the list.
+     * @param previous the previous DonorNode within the List.
+     **/
+   /* public void setPrevious(DonorNode previous) {
+        this.previous = previous;
+    }*/
+
+
 }

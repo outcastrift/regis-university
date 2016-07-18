@@ -53,7 +53,17 @@ public class PrintImpl {
         StringBuilder donorStringBuilder = null;
         StringBuilder donationStringBuilder = null;
 
-        for (Donor d : donors.getDonorList()) {
+
+        for (int x = 0; x < donors.getSizeOfList(); x++) {
+
+        }
+        DonorNode donorList = donors.getDonorList();
+        Donor d = null;
+        while (donorList != null) {
+            d = donorList.getDonor();
+
+
+            donorList = donorList.getNext();
             //determine if donor is gold star
             donationStringBuilder = new StringBuilder();
             donationStringBuilder.append("\n          Donations \n");
@@ -90,8 +100,8 @@ public class PrintImpl {
 
             writer.println(donorStringBuilder.toString());
         }
-        writer.println("Total number of Donations = [" + totalDonationsForAll + "]");
-        writer.println("Total Dollar Amount of All Donations = [" + totalDonationAmountForAll + "]");
+        writer.println("Total number of Donations for all Donors = [" + totalDonationsForAll + "]");
+        writer.println("Total Dollar Amount of All Donations from All Donors = [" + totalDonationAmountForAll + "]");
 
         writer.close();
 

@@ -1,6 +1,6 @@
 package cs310davis;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * This class is a implementation class to access the Donation Database, it contains functions to ensure that
@@ -16,7 +16,7 @@ public class DonationLogImpl {
     /**
      * The Donation Database.
      */
-    private ArrayList<Donation> donationArray = new ArrayList<Donation>();
+    private LinkedList<Donation> donationLinkedList = new LinkedList<Donation>();
 
 
     /**
@@ -24,9 +24,10 @@ public class DonationLogImpl {
      *
      * @return the donation database
      */
-    public ArrayList<Donation> getDonationList() {
+    public LinkedList<Donation> getDonationList() {
         // return the ArrayList attribute
-        return this.donationArray;
+        return this.donationLinkedList;
+
     }
 
     /**
@@ -41,7 +42,7 @@ public class DonationLogImpl {
         boolean added = true;
         if (obj instanceof Donation) {
             Donation donation = (Donation) obj;
-            donationArray.add(donation);
+            donationLinkedList.add(donation);
 
         } else {
             added = false;
@@ -58,9 +59,9 @@ public class DonationLogImpl {
     public boolean remove(int donorId) {
         boolean result = false;
         try {
-            for (Donation dn : donationArray) {
+            for (Donation dn : donationLinkedList) {
                 if (dn.getDonorId() == donorId) {
-                    donationArray.remove(dn);
+                    donationLinkedList.remove(dn);
                     result = true;
                 }
             }
@@ -83,9 +84,9 @@ public class DonationLogImpl {
     public boolean remove(int donorId, int donationId) {
         boolean result = false;
         try {
-            for (Donation dn : donationArray) {
+            for (Donation dn : donationLinkedList) {
                 if (dn.getDonorId() == donorId && dn.getDonationId() == donationId) {
-                    donationArray.remove(dn);
+                    donationLinkedList.remove(dn);
                     result = true;
                 }
             }
@@ -106,7 +107,7 @@ public class DonationLogImpl {
 
     public boolean isIdUnique(int donationId) {
         boolean isUnique = true;
-        for (Donation dn : donationArray) {
+        for (Donation dn : donationLinkedList) {
             if (dn.getDonationId() == donationId) {
                 isUnique = false;
                 break;
@@ -123,7 +124,7 @@ public class DonationLogImpl {
      */
 
     public int numberOfDonations() {
-        return donationArray.size();
+        return donationLinkedList.size();
     }
 
     /**
@@ -136,7 +137,7 @@ public class DonationLogImpl {
 
     public int numberOfDonations(int donorId) {
         int result = 0;
-        for (Donation dn : donationArray) {
+        for (Donation dn : donationLinkedList) {
             if (dn.getDonorId() == donorId) {
                 result = result + 1;
             }
@@ -151,7 +152,7 @@ public class DonationLogImpl {
      */
     public float totalDonationAmount() {
         float result = 0;
-        for (Donation dn : donationArray) {
+        for (Donation dn : donationLinkedList) {
             result = (float) (result + dn.getDonationAmount());
         }
         return result;
@@ -166,7 +167,7 @@ public class DonationLogImpl {
 
     public float totalDonationAmount(int donorId) {
         float result = 0;
-        for (Donation dn : donationArray) {
+        for (Donation dn : donationLinkedList) {
             if (dn.getDonorId() == donorId) {
                 result = (float) (result + dn.getDonationAmount());
             }
@@ -177,6 +178,10 @@ public class DonationLogImpl {
 
     //TODO
     //FIXME
+
+    /**
+     * Method to traverse the entire list of Donations executing the toString() method of each Donation.
+     **/
     public void traverseDisplay() {
         System.out.println("Donation List : \n");
         //Traverse the list of donations using toString() to display each object in the list.
@@ -185,8 +190,14 @@ public class DonationLogImpl {
 
     //TODO
     //FIXME
+
+    /**
+     * Validates the List of Donations by using the isCheckValid() method within the Donation Class.
+     * If a check number  is invalid the donation will be removed from the list.
+     **/
     public void cleanUp() {
         //validate and clean up the donation list
+        //All operations performed will be printed to the console.
     }
 
 
