@@ -73,7 +73,7 @@ public class TableStackImpl {
             sb.append("\n");
         }
         else {
-            sb.append("There is currently no available tables.");
+            sb.append("\nThere is currently no available tables.\n");
         }
         return  sb.toString();
     }

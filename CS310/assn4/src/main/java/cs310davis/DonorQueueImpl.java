@@ -270,5 +270,36 @@ public class DonorQueueImpl {
         return wasRemoved;
 
     }
+    /**
+     * Method to return a string represenation of the current gold star line.
+     * **/
+    public String printGoldStarLine(){
+       return printLine(goldStarList);
+    }
+    /**
+     * Method to return a string representation of the current regular line.
+     * **/
+    public String printRegularLine(){
+      return printLine(regularList);
+    }
+    /**
+     * Method to create a single string representation of the
+     * @param lineToPrint the line to create a string for
+     * **/
+    private String printLine(DonorNode lineToPrint){
+        StringBuilder sb = new StringBuilder();
+        DonorNode traverseList = lineToPrint;
+        if(traverseList ==null){
+            sb.append("There is currently no Donors waiting within this Queue.");
+        }else {
+            Donor d = null;
+            while (traverseList != null) {
+                d = traverseList.getDonor();
+                sb.append(d.getDonorFirstName()).append(" ").append(d.getDonorLastName()).append(" is waiting. \n");
+                traverseList = traverseList.getNext();
+            }
+        }
+        return sb.toString();
+    }
 
 }

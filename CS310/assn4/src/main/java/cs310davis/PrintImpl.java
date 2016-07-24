@@ -131,14 +131,22 @@ public class PrintImpl {
 
         }
         writer.println("SEATING CHART");
-        for(HashMap<Integer, Integer> map : seatingChart){
-         writer.print(printSeating(map, donorLog));
+        if(seatingChart.size() > 0){
+            for(HashMap<Integer, Integer> map : seatingChart){
+                writer.print(printSeating(map, donorLog));
+            }
+        }else{
+            writer.println("There is currently no donors sitting at any of the tables. \n");
         }
+
         writer.print("STACK");
         writer.print(tables.printStack());
+        writer.println();
         writer.println("GOLDSTAR QUEUE");
-
+        writer.print(donorQueue.printGoldStarLine());
+        writer.println();
         writer.println("STANDARD QUEUE");
+        writer.print(donorQueue.printRegularLine());
 
         //File write is complete
         writer.close();
@@ -151,14 +159,12 @@ public class PrintImpl {
         StringBuilder sb = new StringBuilder();
         Iterator it = table.entrySet().iterator();
         while (it.hasNext()) {
-            sb.append("*****************************************************************************************************");
+            sb.append("*****************************************************************************************************\n");
             Map.Entry pair = (Map.Entry)it.next();
             Donor donor =  donorLog.getDonor((Integer) pair.getKey());
             sb.append("Donor : ").append(donor.getDonorFirstName()).append(" ").append(donor.getDonorLastName());
-            sb.append(" is currently seated at table number ").append(pair.getValue());
-
-            System.out.println(pair.getKey() + " = " + pair.getValue());
-            sb.append("*****************************************************************************************************");
+            sb.append(" is currently seated at table number ").append(pair.getValue()).append("\n");
+            sb.append("*****************************************************************************************************\n");
 
             it.remove(); // avoids a ConcurrentModificationException
         }
