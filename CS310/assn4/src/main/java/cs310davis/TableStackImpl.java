@@ -1,192 +1,161 @@
 package cs310davis;
 
-import java.util.Arrays;
-
 /**
  * Created by Samuel Davis on 7/24/16.
  *
- * using a 5-element array implementation. The data can be a
- simple integer 1 through 5 to represent the table number. The TableStackImpl should be able to push
- and pop tables from the stack. You also need to include method to determine if the stack is empty or full
- – and use these methods.
+ * This class represents the amount of tables at a charity dinner in memory.
+ * Remember this data implementation is Last In - First Out
+ * This class includes methods to;
+ * See the current table at the top of the stack.
+ * Pop the top table from the stack.
+ * Push a table to the top of the stack.
  */
 public class TableStackImpl {
-    private Integer[] stackArray;
-    private int stackSize;
+    private Integer[] tableArray;
+    private int tableNumber;
 
     // Sets stack as empty
-
     private int topOfStack = -1;
 
-    TableStackImpl(int size){
 
-        stackSize = size;
+    /**
+     * Public Constructor
+     * **/
+    TableStackImpl(int numberOfTables) {
 
-        stackArray = new Integer[size];
-        //Lets fill up the TableStack with zeros to make this easier to do.
-        // I would have used java util methods here but i figured it was frowned upon.
-        for(int x =0; x<size; x++){
-            stackArray[x] = 0;
+        tableNumber = numberOfTables;
+
+        tableArray = new Integer[numberOfTables];
+
+        for (int x = 0; x < numberOfTables; x++) {
+            tableArray[x] = -1;
         }
+        displayAvailableTables();
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         TableStackImpl theStack = new TableStackImpl(5);
+        //Add to the stack.
+        theStack.push(1);
+        theStack.peek();
 
-        theStack.push(10);
-        theStack.push(17);
-        theStack.push(13);
+        theStack.push(2);
+        theStack.peek();
+
+        theStack.push(3);
+        theStack.peek();
+
+        theStack.push(4);
+        theStack.peek();
+
+        theStack.push(5);
+        theStack.peek();
+
+        theStack.pop();
+        theStack.pop();
+        theStack.pop();
+        theStack.pop();
+        theStack.pop();
+
 
         // Look at the top value on the stack
 
-        theStack.peek();
 
-        // Remove values from the stack (LIFO)
 
-        theStack.pop();
-        theStack.pop();
-        theStack.pop();
-
-        // Add many to the stack
-
-        theStack.pushMany("1 2 4 5 6 7 8 9");
-
-        // Remove all from the stack
-
-        // theStack.popAll();
-
-        // Remove all from the stack and print them
-
-        theStack.popDisplayAll();
-
-        theStack.displayTheStack();
+        theStack.displayAvailableTables();
 
 
     }
+    /**
+     * Method to add a table to the top of the stack. This should be done when a table becomes available.
+     * **/
+    public void push(Integer input) {
 
-    public void push(Integer input){
-
-        if(topOfStack+1 < stackSize){
+        if (topOfStack + 1 < tableNumber) {
 
             topOfStack++;
 
-            stackArray[topOfStack] = input;
-            System.out.println("PUSH " + input + " Was Added to the Stack\n");
-        } else{
-            System.out.println("Sorry But the Stack is Full");
+            tableArray[topOfStack] = input;
+            System.out.println("Adding a table with number of  " + input + " to the TableStack\n");
+        } else {
+            System.out.println("ERROR : There is no more room within the stack, the charity only has 5 tables.");
 
         }
-        displayTheStack();
+        displayAvailableTables();
 
     }
+    /**
+     * Method to remove the top most element from the stack this should be done when someone is seated at a table.
+     *
+     * **/
+    public Integer pop() {
 
-    public Integer pop(){
+        if (topOfStack >= 0) {
 
-        if(topOfStack >= 0){
+            displayAvailableTables();
 
-            displayTheStack();
+            System.out.println("Removing a table with a number of  " + tableArray[topOfStack] + " from the TableStack\n");
 
-            System.out.println("POP " + stackArray[topOfStack] + " Was Removed From the Stack\n");
+            tableArray[topOfStack] = -1; // Assigning -1 to any table that cannot be used.
 
-            // Just like in memory an item isn't deleted, but instead is just not available
-
-            stackArray[topOfStack] = 0; // Assigns -1 so the value won't appear
-
-            return stackArray[topOfStack--];
+            return tableArray[topOfStack--];
 
 
         } else {
 
-            displayTheStack();
+            displayAvailableTables();
 
-            System.out.println("Sorry But the Stack is Empty");
+            System.out.println("ERROR : There is no available table at this time. ");
 
             return 0;
         }
 
 
     }
-
-    public Integer peek(){
-
-        displayTheStack();
-
-        System.out.println("PEEK " + stackArray[topOfStack] + " Is at the Top of the Stack\n");
-
-        return stackArray[topOfStack];
-
-    }
-
-    public void pushMany(String multipleValues){
-
-        String[] stringArray = multipleValues.split(" ");
-        for(int x = 0; x < stringArray.length; x++){
-
-            push(Integer.valueOf(stringArray[x]));
-
+/**
+ * Method to see the top most element within the stack.
+ * **/
+    public Integer peek() {
+        Integer result = 0;
+        if(topOfStack > 0){
+            System.out.println("The next table to seat donors at will be table number " + tableArray[topOfStack] + "\n");
+            result = tableArray[topOfStack];
+        }else{
+            result =0;
+            System.out.println("ERROR : There is no table at the top of the stack, the stack is empty.");
         }
 
-    }
-
-    public void popAll(){
-
-        for(int i = topOfStack; i >= 0; i--){
-
-            pop();
-
-        }
+        return result;
 
     }
 
-    public void popDisplayAll(){
 
-        String theReverse = "";
-
-        for(int i = topOfStack; i >= 0; i--){
-
-            theReverse += stackArray[i];
-
-        }
-
-        System.out.println("The Reverse: " + theReverse);
-
-        popAll();
-
-    }
-
-    public void displayTheStack(){
-
-        for(int n = 0; n < 61; n++)System.out.print("-");
-
+    public void displayAvailableTables() {
+        System.out.print("*****************************************************************************************************");
         System.out.println();
 
-        for(int n = 0; n < stackSize; n++){
-
-            System.out.format("| %2s "+ " ", n);
-
+        for (int n = 0; n < tableNumber; n++) {
+            System.out.format("| Table Number %2s " + "  ", n+1);
         }
 
         System.out.println("|");
 
-        for(int n = 0; n < 61; n++)System.out.print("-");
-
+        System.out.print("*****************************************************************************************************");
         System.out.println();
 
-        for(int n = 0; n < stackSize; n++){
+        for (int n = 0; n < tableNumber; n++) {
 
 
-
-            if(stackArray[n].equals("-1")) System.out.print("|     ");
-
-            else System.out.print(String.format("| %2s "+ " ", stackArray[n]));
+            if (tableArray[n].equals(-1)){
+                System.out.print("|    EMPTY TABLE    ");
+            }else {
+                System.out.print(String.format("| Table # %2s " + "In Use ", tableArray[n]));
+            }
 
         }
-
         System.out.println("|");
-
-        for(int n = 0; n < 61; n++)System.out.print("-");
-
+        System.out.print("*****************************************************************************************************");
         System.out.println();
 
     }
