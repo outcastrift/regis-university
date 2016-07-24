@@ -1,5 +1,7 @@
 package cs310davis;
 
+import java.util.Arrays;
+
 /**
  * Created by Samuel Davis on 7/24/16.
  *
@@ -11,148 +13,88 @@ package cs310davis;
  * Push a table to the top of the stack.
  */
 public class TableStackImpl {
-    private Integer[] tableArray;
-    private int tableNumber;
-
-    // Sets stack as empty
-    private int topOfStack = -1;
-
+    private Integer[] tables;
+    private Integer numberOfTables;
+    private Integer nextTable;
 
     /**
      * Public Constructor
      * **/
     TableStackImpl(int numberOfTables) {
 
-        tableNumber = numberOfTables;
+        this.numberOfTables = numberOfTables;
 
-        tableArray = new Integer[numberOfTables];
-
-        for (int x = 0; x < numberOfTables; x++) {
-            tableArray[x] = -1;
-        }
-        displayAvailableTables();
-    }
-
-    public static void main(String[] args) {
-
-        TableStackImpl theStack = new TableStackImpl(5);
-        //Add to the stack.
-        theStack.push(1);
-        theStack.peek();
-
-        theStack.push(2);
-        theStack.peek();
-
-        theStack.push(3);
-        theStack.peek();
-
-        theStack.push(4);
-        theStack.peek();
-
-        theStack.push(5);
-        theStack.peek();
-
-        theStack.pop();
-        theStack.pop();
-        theStack.pop();
-        theStack.pop();
-        theStack.pop();
-
-
-        // Look at the top value on the stack
-
-
-
-        theStack.displayAvailableTables();
-
-
+        tables = new Integer[numberOfTables];
+        //Hopefully I don't get points removed for using this. I just hate hundreds of for loops.
+        Arrays.fill(tables,-1);
     }
     /**
      * Method to add a table to the top of the stack. This should be done when a table becomes available.
      * **/
     public void push(Integer input) {
 
-        if (topOfStack + 1 < tableNumber) {
+        if (nextTable + 1 < nextTable) {
 
-            topOfStack++;
+            nextTable++;
 
-            tableArray[topOfStack] = input;
-            System.out.println("Adding a table with number of  " + input + " to the TableStack\n");
+            tables[nextTable] = input;
+            System.out.println("Adding a table with number of  " + input + " to the list of available tables.\n");
         } else {
-            System.out.println("ERROR : There is no more room within the stack, the charity only has 5 tables.");
+            System.out.println("ERROR : Table could not be added to the list. The charity has only paid for 5 tables.");
 
         }
-        displayAvailableTables();
-
     }
+
     /**
      * Method to remove the top most element from the stack this should be done when someone is seated at a table.
      *
      * **/
     public Integer pop() {
-
-        if (topOfStack >= 0) {
-
-            displayAvailableTables();
-
-            System.out.println("Removing a table with a number of  " + tableArray[topOfStack] + " from the TableStack\n");
-
-            tableArray[topOfStack] = -1; // Assigning -1 to any table that cannot be used.
-
-            return tableArray[topOfStack--];
-
-
+        if (nextTable >= 0) {
+            System.out.println("Removing a table with the number of  " + tables[nextTable] + " from the list of available tables.\n");
+            tables[nextTable] = -1; // Assigning -1 to any table that cannot be used.
+            return tables[nextTable--];
         } else {
-
-            displayAvailableTables();
-
             System.out.println("ERROR : There is no available table at this time. ");
-
-            return 0;
+            return -1;
         }
 
-
     }
-/**
- * Method to see the top most element within the stack.
- * **/
+    /**
+     * Method to see the top most element within the stack. In other words to see the next available table.
+     * **/
     public Integer peek() {
         Integer result = 0;
-        if(topOfStack > 0){
-            System.out.println("The next table to seat donors at will be table number " + tableArray[topOfStack] + "\n");
-            result = tableArray[topOfStack];
+        if(nextTable > 0){
+            System.out.println("The next table to seat donors at will be table number " + tables[nextTable] + "\n");
+            result = tables[nextTable];
         }else{
-            result =0;
-            System.out.println("ERROR : There is no table at the top of the stack, the stack is empty.");
+            result = -1;
+            System.out.println("ERROR : There is no available table at this time. ");
         }
 
         return result;
 
     }
 
-
     public void displayAvailableTables() {
         System.out.print("*****************************************************************************************************");
         System.out.println();
-
-        for (int n = 0; n < tableNumber; n++) {
+        //Print all the table numbers out.
+        for (int n = 0; n < nextTable; n++) {
             System.out.format("| Table Number %2s " + "  ", n+1);
         }
 
         System.out.println("|");
-
         System.out.print("*****************************************************************************************************");
         System.out.println();
-
-        for (int n = 0; n < tableNumber; n++) {
-
-
-            if (tableArray[n].equals(-1)){
+        //Print all the tables in use and the ones that aren't.
+        for (int n = 0; n < nextTable; n++) {
+            if (tables[n].equals(-1)){
                 System.out.print("|    EMPTY TABLE    ");
             }else {
-                System.out.print(String.format("| Table # %2s " + "In Use ", tableArray[n]));
+                System.out.print(String.format("| Table # %2s " + "In Use ", tables[n]));
             }
-
         }
         System.out.println("|");
         System.out.print("*****************************************************************************************************");
