@@ -29,7 +29,7 @@ public class CS310Davis {
      */
     private static PrintImpl printImpl = new PrintImpl();
     private static DonorQueueImpl donorQueueImpl = new DonorQueueImpl();
-    private static TableStackImpl tableStackImpl = new TableStackImpl(5);
+    private static TableStackImpl tableStackImpl = new TableStackImpl();
     private static SeatingImpl seatingImpl = new SeatingImpl(donorQueueImpl,tableStackImpl);
 
 
@@ -274,6 +274,7 @@ public class CS310Davis {
 
     public static void organizeCharityDinner(){
     readDinersInput();
+    printImpl.printDinnerReport(seatingImpl.getSeating(),donorLogImpl, tableStackImpl,donorQueueImpl,"dinnerReport.txt");
 
     }
     public static void readDinersInput(){

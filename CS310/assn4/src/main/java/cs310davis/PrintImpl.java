@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 /**
@@ -107,5 +111,58 @@ public class PrintImpl {
 
         writer.close();
 
+    }
+
+
+    public void printDinnerReport(ArrayList<HashMap<Integer,Integer>> seatingChart,
+                                  DonorLogImpl donorLog,
+                                  TableStackImpl tables,
+                                  DonorQueueImpl donorQueue,
+                                  String filename){
+        PrintWriter writer = null;
+        try {
+            File file = new File(OUTPUT_DIRECTORY + filename);
+            file.getParentFile().mkdirs();
+            writer = new PrintWriter(file, "UTF-8");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+
+        }
+        writer.println("SEATING CHART");
+        for(HashMap<Integer, Integer> map : seatingChart){
+         writer.print(printSeating(map, donorLog));
+        }
+        writer.print("STACK");
+        writer.print(tables.printStack());
+        writer.println("GOLDSTAR QUEUE");
+
+        writer.println("STANDARD QUEUE");
+
+        //File write is complete
+        writer.close();
+    }
+
+    /**
+     * Private method to display the log output for a single seated table.
+     * **/
+    private String  printSeating(HashMap<Integer,Integer> table, DonorLogImpl donorLog) {
+        StringBuilder sb = new StringBuilder();
+        Iterator it = table.entrySet().iterator();
+        while (it.hasNext()) {
+            sb.append("*****************************************************************************************************");
+            Map.Entry pair = (Map.Entry)it.next();
+            Donor donor =  donorLog.getDonor((Integer) pair.getKey());
+            sb.append("Donor : ").append(donor.getDonorFirstName()).append(" ").append(donor.getDonorLastName());
+            sb.append(" is currently seated at table number ").append(pair.getValue());
+
+            System.out.println(pair.getKey() + " = " + pair.getValue());
+            sb.append("*****************************************************************************************************");
+
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+
+        return  sb.toString();
     }
 }

@@ -11,7 +11,7 @@ package cs310davis;
  *
  * As each action occurs, you will provide an audit trail.
  * At the end of the program, your application will provide a report providing the existing seating chart (which donor is at which table),
- * which tables are available in the stack (the top of the stack is to be listed first), and which donors are still sitting in each of
+ * which tables are available in the stack (the topOfStack of the stack is to be listed first), and which donors are still sitting in each of
  * the queues in order.
  * All output is to be placed into a dinnerReport.txt file to be located in the output folder.
  */
@@ -30,6 +30,7 @@ public class DonorQueueImpl {
      * If the GoldStar line is not empty it will retrieve the first donor in that line
      * otherwise it will get the first person in the regular line.
      * After retrieving the donor from their perspective line they are removed from the line.
+     * This is the only public method that removes elements from either line.
      * **/
     public Donor getNextDonorToBeSeated(){
         Donor result = null;
@@ -44,7 +45,11 @@ public class DonorQueueImpl {
       return result;
     }
 
-
+    /**
+     * The only public method for adding a donor to the queue, this method will check whether or not the perspective
+     * @param donor the donor to add
+     *              is a gold star donor or not and add them appropriately.
+     * **/
     public void addDonorToAppropriateQueue(Donor donor) {
         if (donor.isGoldStar()) {
             System.out.println("Donor "+donor.getDonorFirstName()+" "+donor.getDonorLastName() +
@@ -57,7 +62,9 @@ public class DonorQueueImpl {
             addToRegularQueue(donor);
         }
     }
-
+    /**
+     * Public method to determine if the Gold Star line is empty or not.
+     * **/
     public boolean isGoldStarLineEmpty() {
         boolean isEmpty = false;
         if (goldStarList == null) {
@@ -67,7 +74,9 @@ public class DonorQueueImpl {
         }
         return isEmpty;
     }
-
+    /**
+     * Public method to determine whether the regular donor line is empty or not.
+     * **/
     public boolean isRegularLineEmpty() {
         boolean isEmpty = false;
         if (regularList == null) {
@@ -77,7 +86,9 @@ public class DonorQueueImpl {
         }
         return isEmpty;
     }
-
+    /**
+     * Public method to determine whether the gold star line is full.
+     * **/
     public boolean isGoldStarListFull() {
         boolean isFull = false;
         try {
@@ -87,7 +98,9 @@ public class DonorQueueImpl {
         }
         return isFull;
     }
-
+    /**
+     * Public method to determine whether the regular donor line is full or not.
+     * **/
     public boolean isRegularListFull() {
         boolean isFull = false;
         try {
@@ -97,7 +110,9 @@ public class DonorQueueImpl {
         }
         return isFull;
     }
-
+    /**
+     * Private method invoked to add a donor to the gold star queue.
+     * **/
     private void addToGoldstarQueue(Donor donor) {
         if (isGoldStarLineEmpty()) {
             //First donor to enter the line.
@@ -114,7 +129,9 @@ public class DonorQueueImpl {
             }
         }
     }
-
+    /**
+     * Private method invoked to add a donor to the regular queue.
+     * **/
     private void addToRegularQueue(Donor donor) {
         if (isRegularLineEmpty()) {
             //First donor to enter the line.
@@ -134,12 +151,16 @@ public class DonorQueueImpl {
 
         }
     }
-
+    /**
+     * Private method invoked to determine the next gold star donor to be seated.
+     * **/
     private Donor getNextGoldStarDonor() {
 
         return goldStarList.getDonor();
     }
-
+    /**
+     * Private method invoked to determine the next regular donor to be seated.
+     * **/
     private Donor getNextRegularDonor() {
         return  regularList.getDonor();
     }
@@ -151,7 +172,7 @@ public class DonorQueueImpl {
      * @return true if successful
      * false otherwise
      */
-    public boolean removeDonorFromGoldStarList(Integer donorId) {
+    private boolean removeDonorFromGoldStarList(Integer donorId) {
         boolean wasRemoved = false;
 
         if (isGoldStarLineEmpty()) {
@@ -205,7 +226,7 @@ public class DonorQueueImpl {
      * @return true if successful
      * false otherwise
      */
-    public boolean removeDonorFromRegularList(Integer donorId) {
+    private boolean removeDonorFromRegularList(Integer donorId) {
         boolean wasRemoved = false;
         if (isRegularLineEmpty()) {
             System.out.println("ERROR : Unable to remove donor with donor ID of " + donorId +

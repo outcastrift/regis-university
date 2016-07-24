@@ -1,115 +1,82 @@
 package cs310davis;
 
-import java.util.Arrays;
-
 /**
  * Created by Samuel Davis on 7/24/16.
  *
  * This class represents the amount of tables at a charity dinner in memory.
  * Remember this data implementation is Last In - First Out
  * This class includes methods to;
- * See the current table at the top of the stack.
- * Pop the top table from the stack.
- * Push a table to the top of the stack.
+ * See the current table at the topOfStack of the stack.
+ * Pop the topOfStack table from the stack.
+ * Push a table to the topOfStack of the stack.
  */
 public class TableStackImpl {
-    private Integer[] tables = new Integer[5];
-    private Integer numberOfTables;
-    private Integer nextTable =-1;
-
-    /**
-     * Public Constructor
-     * **/
-    TableStackImpl(int numberOfTables) {
-
-        this.numberOfTables = numberOfTables;
-
-        tables = new Integer[numberOfTables];
-        push(1);
-        push(2);
-        push(3);
-        push(4);
-        push(5);
 
 
+    static int MAXSIZE=5;          // maximum size of the stack
+    Integer[] tableStack;          // the array to hold the tableStack
+    int topOfStack;                // indicates the topOfStack of the stack
 
-
+    public TableStackImpl() {
+        tableStack = new Integer[MAXSIZE];    // instantiate the TableStack array
+        topOfStack = -1;                                // initialize the topOfStack
     }
-    /**
-     * Method to add a table to the top of the stack.
-     * This should be done when a table becomes available.
-     * **/
-    public void push(Integer input) {
 
-        if (nextTable + 1 < numberOfTables) {
-
-            nextTable++;
-
-            tables[nextTable] = input;
+    public void push (int input ) {
+        if (topOfStack < tableStack.length) {             // make sure the stack is not full
+            topOfStack++;                                // increment the topOfStack pointer
+            tableStack[topOfStack] = input;           // add the new paper to the stack
             System.out.println("Adding a table with number of  " + input + " to the list of available tables.\n");
-        } else {
+
+        }
+        else {
             System.out.println("ERROR : Table could not be added to the list. The charity has only paid for 5 tables.");
+        }
+    }
+    /**
+     * Public method to remove the top most integer from the stack and return it to the caller.
+     * **/
+    public int pop () {
+        int tableNumber = -1;
+
+        if (!isEmpty()) {                      // make sure there is something in the stack
+            tableNumber = tableStack[topOfStack];      // take the paper out of the stack
+            topOfStack--;                              // decrement the stack pointer
+            System.out.println("Removing a table with the number of  " + tableNumber + " from the list of available tables.\n");
 
         }
+        else {
+            System.out.println("ERROR : There is no available tables to remove.");
+        }
+        return tableNumber;
+    }
+    /**
+     * Public method to determine whether or not the table stack is empty.
+     * **/
+    public boolean isEmpty() {      // check if the stack is empty
+        boolean retValue = false;
+        if (topOfStack < 0) {
+            retValue = true;
+        }
+        return (retValue);
     }
 
     /**
-     * Method to remove the top most element from the stack
-     * this should be done when someone is seated at a table.
-     *
+     * Print method called to get the list of available tables
      * **/
-    public Integer pop() {
-        Integer result = 0;
-        if (nextTable >= 0) {
-            System.out.println("Removing a table with the number of  " + tables[nextTable] + " from the list of available tables.\n");
-            tables[nextTable] = -1;
-            result= tables[nextTable];
-        } else {
-            System.out.println("ERROR : There is no available table at this time. ");
-            result = -1;
-        }
-        return  result;
-
-    }
-    /**
-     * Method to see the top most element within the stack. In other words to see the next available table.
-     * **/
-    public Integer nextAvailableTable() {
-        Integer result = 0;
-        if(nextTable >= 0){
-            System.out.println("There is a table available. The next table to seat donors at will be table number " + tables[nextTable] + "\n");
-            tables[nextTable] = -1;
-            result = tables[nextTable--];
-        } else {
-            System.out.println("ERROR : There is no available table at this time. ");
-            result = -1;
-        }
-        return result;
-
-    }
-
-    public void displayAvailableTables() {
-        System.out.print("*****************************************************************************************************");
-        System.out.println();
-        //Print all the table numbers out.
-        for (int n = 0; n < numberOfTables; n++) {
-            System.out.format("| Table Number %2s " + "  ", n+1);
-        }
-
-        System.out.println("|");
-        System.out.print("*****************************************************************************************************");
-        System.out.println();
-        //Print all the tables in use and the ones that aren't.
-        for (int n = 0; n < numberOfTables; n++) {
-            if (tables[n].equals(-1)){
-                System.out.print("|    Table In Use    ");
-            }else {
-                System.out.print(String.format("| Table # %2s " + "Is Empty ", tables[n]));
+    public  String printStack() {    // utility to print contents of the stack
+        StringBuilder sb = new StringBuilder();
+        if (!isEmpty()) {
+            for (int idx = topOfStack; idx >= 0; idx--) {
+                sb.append("\nTable [" + tableStack[idx] + "] is available ");
             }
+            sb.append("\n");
         }
-        System.out.println("|");
-        System.out.print("*****************************************************************************************************");
-        System.out.println();
-
+        else {
+            sb.append("There is currently no available tables.");
+        }
+        return  sb.toString();
     }
+
+
 }
