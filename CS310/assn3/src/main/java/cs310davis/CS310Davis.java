@@ -18,15 +18,15 @@ public class CS310Davis {
     /**
      * The Donor log.
      */
-    static DonorLogImpl donorLogImpl = new DonorLogImpl();
+    private static DonorLogImpl donorLogImpl = new DonorLogImpl();
     /**
      * The Donation log.
      */
-    static DonationLogImpl donationLogImpl = new DonationLogImpl();
+    private static DonationLogImpl donationLogImpl = new DonationLogImpl();
     /**
      * The Print.
      */
-    static PrintImpl printImpl = new PrintImpl();
+    private static PrintImpl printImpl = new PrintImpl();
 
     /**
      * The entry point of application.
@@ -125,7 +125,7 @@ public class CS310Davis {
         int donorId = Integer.valueOf(inputLineValues[3]);
         if (!donorLogImpl.isIdUnique(donorId)) {
             donorLogImpl.remove(donorId);
-            donationLogImpl.remove(donorId);
+            DonationLogImpl.remove(donorId);
             System.out.println("\n A donor with the id of " + donorId + " and his donations was successfully deleted from the donor and donation list.");
 
         } else {
@@ -145,7 +145,7 @@ public class CS310Davis {
     public static void processDonationDeletion(String[] inputLineValues) {
         int donationId = Integer.valueOf(inputLineValues[3]);
         if (!donationLogImpl.isIdUnique(donationId)) {
-            donationLogImpl.remove(donationId);
+            DonationLogImpl.remove(donationId);
             System.out.println("\n A donation with the id of " + donationId + " was successfully deleted.");
         } else {
             System.out.println("\n ERROR : A donation with the id of " + donationId + " was not within the list and was not deleted.");
@@ -242,7 +242,7 @@ public class CS310Davis {
      * Method to create a report via the PrintImpl.class.
      */
     public static void createReport() {
-        printImpl.printReportToDirectory("assn3initialReport.txt");
+        printImpl.printReportToDirectory("assn3initialReport.txt",donationLogImpl,donorLogImpl);
     }
 
 
@@ -261,7 +261,7 @@ public class CS310Davis {
         donorLogImpl.cleanUp();
         donationLogImpl.cleanUp();
         // Create the report.
-        printImpl.printReportToDirectory("assn3cleanReport.txt");
+        printImpl.printReportToDirectory("assn3cleanReport.txt",donationLogImpl,donorLogImpl);
     }
 
 }

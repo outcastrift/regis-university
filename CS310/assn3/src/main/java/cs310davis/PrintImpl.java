@@ -33,9 +33,10 @@ public class PrintImpl {
      * After printing information on each individual donor a total number of donors will be displayed as well as the
      * total dollar amount of all donations.
      */
-    public void printReportToDirectory(String filename) {
-        DonationLogImpl donations = CS310Davis.donationLogImpl;
-        DonorLogImpl donors = CS310Davis.donorLogImpl;
+    public void printReportToDirectory(String filename,
+                                       DonationLogImpl donations,
+                                       DonorLogImpl donors) {
+
         int totalDonationsForAll = 0;
         double totalDonationAmountForAll = 0;
 
@@ -69,7 +70,7 @@ public class PrintImpl {
             donationStringBuilder.append("\n          Donations \n");
             double totalDonationAmount = donations.totalDonationAmount(d.getDonorId());
             int totalDonations = donations.numberOfDonations(d.getDonorId());
-            for (Donation dn : donations.getDonationList()) {
+            for (Donation dn : DonationLogImpl.getDonationList()) {
                 if (dn.getDonorId() == d.getDonorId()) {
                     donationStringBuilder.append("                    DonationId = " + dn.getDonationId() + "  ")
                             .append("DonationDate = " + dn.getDonationDate() + "  ")
