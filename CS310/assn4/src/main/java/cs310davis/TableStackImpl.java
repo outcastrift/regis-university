@@ -13,9 +13,9 @@ import java.util.Arrays;
  * Push a table to the top of the stack.
  */
 public class TableStackImpl {
-    private Integer[] tables;
+    private Integer[] tables = new Integer[5];
     private Integer numberOfTables;
-    private Integer nextTable;
+    private Integer nextTable =-1;
 
     /**
      * Public Constructor
@@ -25,11 +25,19 @@ public class TableStackImpl {
         this.numberOfTables = numberOfTables;
 
         tables = new Integer[numberOfTables];
-        //Hopefully I don't get points removed for using this. I just hate hundreds of for loops.
-        Arrays.fill(tables,-1);
+        push(1);
+        push(2);
+        push(3);
+        push(4);
+        push(5);
+
+
+
+
     }
     /**
-     * Method to add a table to the top of the stack. This should be done when a table becomes available.
+     * Method to add a table to the top of the stack.
+     * This should be done when a table becomes available.
      * **/
     public void push(Integer input) {
 
@@ -46,33 +54,36 @@ public class TableStackImpl {
     }
 
     /**
-     * Method to remove the top most element from the stack this should be done when someone is seated at a table.
+     * Method to remove the top most element from the stack
+     * this should be done when someone is seated at a table.
      *
      * **/
     public Integer pop() {
+        Integer result = 0;
         if (nextTable >= 0) {
             System.out.println("Removing a table with the number of  " + tables[nextTable] + " from the list of available tables.\n");
-            tables[nextTable] = -1; // Assigning -1 to any table that cannot be used.
-            return tables[nextTable--];
+            tables[nextTable] = -1;
+            result= tables[nextTable];
         } else {
             System.out.println("ERROR : There is no available table at this time. ");
-            return -1;
+            result = -1;
         }
+        return  result;
 
     }
     /**
      * Method to see the top most element within the stack. In other words to see the next available table.
      * **/
-    public Integer peek() {
+    public Integer nextAvailableTable() {
         Integer result = 0;
-        if(nextTable > 0){
-            System.out.println("The next table to seat donors at will be table number " + tables[nextTable] + "\n");
-            result = tables[nextTable];
-        }else{
-            result = -1;
+        if(nextTable >= 0){
+            System.out.println("There is a table available. The next table to seat donors at will be table number " + tables[nextTable] + "\n");
+            tables[nextTable] = -1;
+            result = tables[nextTable--];
+        } else {
             System.out.println("ERROR : There is no available table at this time. ");
+            result = -1;
         }
-
         return result;
 
     }

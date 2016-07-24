@@ -28,9 +28,9 @@ public class CS310Davis {
      * The Print.
      */
     private static PrintImpl printImpl = new PrintImpl();
-    private static SeatingImpl seatingImpl = new SeatingImpl();
     private static DonorQueueImpl donorQueueImpl = new DonorQueueImpl();
     private static TableStackImpl tableStackImpl = new TableStackImpl(5);
+    private static SeatingImpl seatingImpl = new SeatingImpl(donorQueueImpl,tableStackImpl);
 
 
     /**
@@ -295,6 +295,7 @@ public class CS310Davis {
                  Donor donorArrived = donorLogImpl.getDonor(Integer.valueOf(attributes[1]));
                     if(donorArrived !=null){
                         System.out.println("Donor "+ donorArrived.getDonorFirstName()+ " " + donorArrived.getDonorLastName() + " has arrived.");
+                        seatingImpl.processDonorArrival(donorArrived);
                     }else{
                         System.out.println("A donor with ID of "+attributes[1]+ " tried to crash the dinner but was turned away.");
                     }
@@ -302,6 +303,7 @@ public class CS310Davis {
                     Donor donorDeparting = donorLogImpl.getDonor(Integer.valueOf(attributes[1]));
                     if(donorDeparting !=null){
                         System.out.println("Donor "+ donorDeparting.getDonorFirstName()+ " " + donorDeparting.getDonorLastName()+ " has departed.");
+                        seatingImpl.processDonorDeparture(donorDeparting);
 
                     }
 
