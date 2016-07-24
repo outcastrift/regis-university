@@ -1,7 +1,5 @@
 package cs310davis;
 
-import java.util.Arrays;
-
 /**
  * Created by Samuel Davis on 7/24/16.
  * You will create your own DonorQueueImpl using a singly linked list, with references to both the front
@@ -37,54 +35,170 @@ public class DonorQueueImpl {
     //this list will always have reference to the first/next person in line.
 
     DonorNode regularList = null; //Empty Linked List
-    DonorNode rearOfGoldStarLine = null;
-    DonorNode rearOfRegularLine = null;
 
 
+    public boolean isGoldStarLineEmpty(){
+        boolean isEmpty =false;
+        if(goldStarList ==null){
+            isEmpty =true;
+        }else if(goldStarList.getDonor() ==null){
+            isEmpty =true;
+        }
+        return isEmpty;
+    }
+    public boolean isRegularLineEmpty(){
+        boolean isEmpty =false;
+        if(regularList ==null){
+            isEmpty =true;
+        }else if(regularList.getDonor() ==null){
+            isEmpty =true;
+        }
+        return isEmpty;
+    }
+    public boolean isGoldStarListFull(){
+        boolean isFull =false;
+       try{
+           DonorNode donorNode = new DonorNode(null, null);
+       }catch(Exception e){
+          isFull =true;
+       }
+       return isFull;
+    }
 
-
+    public boolean isRegularListFull(){
+        boolean isFull =false;
+        try{
+            DonorNode donorNode = new DonorNode(null, null);
+        }catch(Exception e){
+            isFull =true;
+        }
+        return isFull;
+    }
 
     public void addToGoldstarQueue(Donor donor){
         if(goldStarList == null){
             //First donor to enter the line.
             goldStarList = new DonorNode(donor,null);
-            rearOfGoldStarLine = goldStarList;
 
         }else{
             //Someone is ahead of the donor in line.
             DonorNode newRearOfLine = new DonorNode(donor, null);
             goldStarList.setNext(newRearOfLine);
-            rearOfGoldStarLine = newRearOfLine;
 
         }
-    }
-    public Donor getNextGoldStarDonor(Integer donorId){
-       return getDonor(goldStarList, donorId);
-    }
-    public void removeDonorFromGoldStarList(){
-
-    }
-    public Donor getNextRegularDonor(Integer donorId){
-        return getDonor(regularList, donorId);
-    }
-    public void removeDonorFromRegularList(){
-
     }
     public void addToRegularQueue(Donor donor){
         if(regularList == null){
             //First donor to enter the line.
             regularList = new DonorNode(donor,null);
-            rearOfGoldStarLine = regularList;
 
         }else{
             //Someone is ahead of the donor in line.
             DonorNode newRearOfLine = new DonorNode(donor, null);
 
             regularList.setNext(newRearOfLine);
-            rearOfRegularLine = newRearOfLine;
 
         }
     }
+    public Donor getNextGoldStarDonor(Integer donorId){
+       return getDonor(goldStarList, donorId);
+    }
+    public Donor getNextRegularDonor(Integer donorId){
+        return getDonor(regularList, donorId);
+    }
+    /**
+     * Remove a specified donor from the goldstar line.
+     *
+     * @param donorId the donor id
+     * @return true if successful
+     * false otherwise
+     */
+    public boolean removeDonorFromGoldStarList(Integer donorId){
+        DonorNode removalList = goldStarList;
+        boolean wasRemoved = false;
+        Donor d = null;
+        DonorNode previous = null;
+        DonorNode next = null;
+        DonorNode current = null;
+        while (removalList != null) {
+            current = removalList;
+            next = removalList.getNext();
+            d = current.getDonor();
+            if (d.getDonorId() == donorId) {
+                if (previous == null) {
+                    // We are deleting the first element in the List
+                    //set the current node to null
+                    // set the real donorLinkedList to start at the new Element
+                    this.goldStarList = next;
+                    wasRemoved = true;
+                } else {
+                    //remove the entry from the list
+                    //set the previous node to link to the next node
+                    //set the current node to null
+                    current = null;
+                    previous.setNext(next);
+                    wasRemoved = true;
+                }
+            }
+            previous = current;
+            removalList = removalList.getNext();
+
+        }
+        if (!wasRemoved) {
+            System.out.println("ERROR: Unable to remove Donor from the List the DonorId specified" +
+                    " was not located within the list.");
+        }
+        return wasRemoved;
+
+
+    }
+    /**
+     * Remove a specified donor from the regular line.
+     *
+     * @param donorId the donor id
+     * @return true if successful
+     * false otherwise
+     */
+    public boolean removeDonorFromRegularList(Integer donorId){
+        DonorNode removalList = regularList;
+        boolean wasRemoved = false;
+        Donor d = null;
+        DonorNode previous = null;
+        DonorNode next = null;
+        DonorNode current = null;
+        while (removalList != null) {
+            current = removalList;
+            next = removalList.getNext();
+            d = current.getDonor();
+            if (d.getDonorId() == donorId) {
+                if (previous == null) {
+                    // We are deleting the first element in the List
+                    //set the current node to null
+                    // set the real donorLinkedList to start at the new Element
+                    this.regularList = next;
+                    wasRemoved = true;
+                } else {
+                    //remove the entry from the list
+                    //set the previous node to link to the next node
+                    //set the current node to null
+                    current = null;
+                    previous.setNext(next);
+                    wasRemoved = true;
+                }
+            }
+            previous = current;
+            removalList = removalList.getNext();
+
+        }
+        if (!wasRemoved) {
+            System.out.println("ERROR: Unable to remove Donor from the List the DonorId specified" +
+                    " was not located within the list.");
+        }
+        return wasRemoved;
+
+    }
+
+
 
     /**
      * Method to get specified donor from the list.
@@ -104,6 +218,5 @@ public class DonorQueueImpl {
         }
         return result;
     }
-
 
 }
