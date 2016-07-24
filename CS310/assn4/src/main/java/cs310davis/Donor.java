@@ -28,6 +28,7 @@ public class Donor {
      */
     private String donorEmailAddress;
 
+    private boolean isGoldStar;
 
     /**
      * Instantiates a new Donor with specified parameters.
@@ -198,5 +199,13 @@ public class Donor {
         sb.append("Donor :: Phone Number = ").append(donorPhoneNumber).append("\n");
         sb.append("Donor :: Email Address = ").append(donorEmailAddress).append("\n");
         return sb.toString();
+    }
+
+    public boolean isGoldStar() {
+        return isGoldStar;
+    }
+
+    public void setGoldStar(boolean goldStar) {
+        isGoldStar = goldStar;
     }
 }

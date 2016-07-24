@@ -177,7 +177,23 @@ public class DonorLogImpl {
             traverseList = traverseList.getNext();
         }
     }
-
+    /**
+     * Method to get specified donor from the list.
+     **/
+    public Donor getDonor(Integer donorID) {
+        Donor result = null;
+        DonorNode getList = donorLinkedList;
+        Donor d = null;
+        while (getList != null) {
+            d = getList.getDonor();
+            if(d.getDonorId().equals(donorID)){
+                result = d;
+                break;
+            }
+            getList = getList.getNext();
+        }
+        return result;
+    }
 
     /**
      * Validates the List of Donors by using the isEmailValid() method within the Donor Class.

@@ -90,6 +90,7 @@ public class PrintImpl {
                     .append("  Donor Last Name = " + d.getDonorLastName() + ",  ")
                     .append("  Donor First Name = " + d.getDonorFirstName() + ",   ");
             if (totalDonationAmount > 10000.00) {
+                d.setGoldStar(true);
                 donorStringBuilder.append("GOLDSTAR");
             }
             totalDonationsForAll = totalDonations + totalDonationsForAll;

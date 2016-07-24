@@ -14,6 +14,8 @@ public class SeatingImpl {
     //A array list containing hash maps of integer integer, where integer is the table number, and integer is donor id.
     private ArrayList<HashMap<Integer, Integer>> seatingChart;
 
+    
+
 
 
 
