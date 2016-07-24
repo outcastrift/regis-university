@@ -33,7 +33,7 @@ public class TableStackImpl {
      * **/
     public void push(Integer input) {
 
-        if (nextTable + 1 < nextTable) {
+        if (nextTable + 1 < numberOfTables) {
 
             nextTable++;
 
@@ -81,7 +81,7 @@ public class TableStackImpl {
         System.out.print("*****************************************************************************************************");
         System.out.println();
         //Print all the table numbers out.
-        for (int n = 0; n < nextTable; n++) {
+        for (int n = 0; n < numberOfTables; n++) {
             System.out.format("| Table Number %2s " + "  ", n+1);
         }
 
@@ -89,11 +89,11 @@ public class TableStackImpl {
         System.out.print("*****************************************************************************************************");
         System.out.println();
         //Print all the tables in use and the ones that aren't.
-        for (int n = 0; n < nextTable; n++) {
+        for (int n = 0; n < numberOfTables; n++) {
             if (tables[n].equals(-1)){
-                System.out.print("|    EMPTY TABLE    ");
+                System.out.print("|    Table In Use    ");
             }else {
-                System.out.print(String.format("| Table # %2s " + "In Use ", tables[n]));
+                System.out.print(String.format("| Table # %2s " + "Is Empty ", tables[n]));
             }
         }
         System.out.println("|");

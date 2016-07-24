@@ -27,7 +27,7 @@ public class CS310Davis {
      * The Print.
      */
     private static PrintImpl printImpl = new PrintImpl();
-
+    private static SeatingImpl seatingImpl = new SeatingImpl();
     /**
      * The entry point of application.
      *
@@ -40,6 +40,9 @@ public class CS310Davis {
         createReport();
         // Call the method to create the cleaned report.
         createCleanReport();
+        //Call the method to organize and create the charity dinner.
+        organizeCharityDinner();
+
     }
 
     /**
@@ -262,6 +265,10 @@ public class CS310Davis {
         donationLogImpl.cleanUp();
         // Create the report.
         printImpl.printReportToDirectory("assn4cleanReport.txt",donationLogImpl,donorLogImpl);
+    }
+
+    public static void organizeCharityDinner(){
+
     }
 
 }
