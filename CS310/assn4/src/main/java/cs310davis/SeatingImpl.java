@@ -8,8 +8,7 @@ import java.util.Iterator;
 /**
  * Created by Samuel Davis on 7/24/16.
  *
- * As donors are assigned to a table, you will need to be able to specify which donor is sitting at what table.
- Choose an appropriate data structure that we have studied to provide this information
+ * CLass that controls adding donors to tables and seating them correctly.
  */
 public class SeatingImpl {
 

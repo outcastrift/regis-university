@@ -3,17 +3,7 @@ package cs310davis;
 /**
  * Created by Samuel Davis on 7/24/16.
 
- * If a donor arrives to the dinner, but there are not any tables available, the donor will be assigned to a
- * queue to wait for the next available table. If the donor is a GoldStar donor, that donor is assigned to the
- * GoldStar queue. If the donor is not, then the donor is assigned to standard donor queue.
- * When a donor is seated from the queue, that donor will be taken from the front of the linked list.
- *
- *
- * As each action occurs, you will provide an audit trail.
- * At the end of the program, your application will provide a report providing the existing seating chart (which donor is at which table),
- * which tables are available in the stack (the topOfStack of the stack is to be listed first), and which donors are still sitting in each of
- * the queues in order.
- * All output is to be placed into a dinnerReport.txt file to be located in the output folder.
+ * Class to control the different queues for GoldStar and regular Donors. .
  */
 public class DonorQueueImpl {
     //this list will always have reference to the first/next person in line.
