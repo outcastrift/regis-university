@@ -14,7 +14,7 @@ public class CS310Davis {
     /**
      * The input file to parse.
      */
-    private static final String INPUT_FILENAME = "input/assn4input1.txt";
+    private static final String INPUT_FILENAME = "input/assn5input1.txt";
     private static final String DINER_INPUT_FILENAME="input/diners.txt";
     /**
      * The Donor log.
