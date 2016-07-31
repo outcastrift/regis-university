@@ -89,6 +89,20 @@ public class DonationLogImpl {
 
     }
 
+    public int hashDonationId(int donationId){
+        int hashCode =0;
+        String id = String.valueOf(donationId);
+        char[] charArray = id.toCharArray();
+
+
+        for(char c : charArray){
+            hashCode= hashCode + (int) c;
+        }
+        //todo change this to whatever data structure i end up using
+        hashCode = hashCode % 23;
+        return hashCode;
+    }
+
     /**
      * Add donation to the database..
      *

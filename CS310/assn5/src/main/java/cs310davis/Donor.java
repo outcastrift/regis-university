@@ -56,6 +56,7 @@ public class Donor {
     }
 
 
+
     /**
      * Checks if a email is valid by looking for a @ symbol.
      *

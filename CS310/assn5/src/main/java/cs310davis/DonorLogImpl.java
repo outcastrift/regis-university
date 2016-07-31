@@ -1,6 +1,7 @@
 package cs310davis;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * This class is a implementation class to access the Donor Database, it contains functions to ensure that
@@ -20,7 +21,7 @@ public class DonorLogImpl {
      */
 
     private DonorNode donorLinkedList = null; //Empty Linked List
-
+    private HashSet<Donor> donorHashSet = new HashSet<Donor>(23);
     /**
      * Gets the Donor Database.
      *
@@ -29,6 +30,20 @@ public class DonorLogImpl {
     // return the ArrayList attribute
     public DonorNode getDonorList() {
         return this.donorLinkedList;
+    }
+
+
+    public int hashDonorId(int donorId){
+        int hashCode =0;
+        String id = String.valueOf(donorId);
+        char[] charArray = id.toCharArray();
+
+
+        for(char c : charArray){
+           hashCode= hashCode + (int) c;
+        }
+        hashCode = hashCode % donorHashSet.size();
+        return hashCode;
     }
 
     /**
