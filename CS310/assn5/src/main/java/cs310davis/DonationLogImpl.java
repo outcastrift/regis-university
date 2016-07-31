@@ -55,7 +55,6 @@ public class DonationLogImpl {
         for(char c : charArray){
             hashCode= hashCode + (int) c;
         }
-        //todo change this to whatever data structure i end up using
         hashCode = hashCode % 23;
         return hashCode;
     }

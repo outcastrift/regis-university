@@ -37,12 +37,10 @@ public class DonorLogImpl {
         int hashCode =0;
         String id = String.valueOf(donorId);
         char[] charArray = id.toCharArray();
-
-
         for(char c : charArray){
            hashCode= hashCode + (int) c;
         }
-        hashCode = hashCode % donorHashSet.size();
+        hashCode = hashCode % 23;
         return hashCode;
     }
 
