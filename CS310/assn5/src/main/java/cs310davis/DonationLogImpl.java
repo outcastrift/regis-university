@@ -1,6 +1,7 @@
 package cs310davis;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -19,7 +20,7 @@ public class DonationLogImpl {
      * The Donation Database.
      */
     private static LinkedList<Donation> donationLinkedList = new LinkedList<Donation>();
-
+    private static HashSet<Donation> donationHashSet = new HashSet<Donation>(23);
     /**
      * Remove donations with donorId from list and return true if successful.
      *
