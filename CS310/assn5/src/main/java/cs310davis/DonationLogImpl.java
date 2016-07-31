@@ -46,6 +46,19 @@ public class DonationLogImpl {
         return result;
 
     }
+    public int hashDonationId(int donationId){
+        int hashCode =0;
+        String id = String.valueOf(donationId);
+        char[] charArray = id.toCharArray();
+
+
+        for(char c : charArray){
+            hashCode= hashCode + (int) c;
+        }
+        //todo change this to whatever data structure i end up using
+        hashCode = hashCode % 23;
+        return hashCode;
+    }
 
     /**
      * Remove donation with both donorId and donationId from list
@@ -87,20 +100,6 @@ public class DonationLogImpl {
         // return the ArrayList attribute
         return donationLinkedList;
 
-    }
-
-    public int hashDonationId(int donationId){
-        int hashCode =0;
-        String id = String.valueOf(donationId);
-        char[] charArray = id.toCharArray();
-
-
-        for(char c : charArray){
-            hashCode= hashCode + (int) c;
-        }
-        //todo change this to whatever data structure i end up using
-        hashCode = hashCode % 23;
-        return hashCode;
     }
 
     /**
