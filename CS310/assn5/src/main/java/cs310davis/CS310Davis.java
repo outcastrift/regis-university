@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import cs310davis.donation.Donation;
 import cs310davis.donation.DonationImpl;
-import cs310davis.donation.DonationLogImpl;
 import cs310davis.donor.Donor;
 import cs310davis.donor.DonorImpl;
 import cs310davis.print.PrintImpl;
@@ -166,7 +165,7 @@ public class CS310Davis {
     int donorId = Integer.valueOf(inputLineValues[3]);
     if (!donorImpl.isIdUnique(donorId)) {
       donorImpl.remove(donorId);
-      DonationLogImpl.remove(donorId);
+      DonationImpl.remove(donorId);
       System.out.println("\n A donor with the id of " + donorId + " and his donations was successfully deleted from " +
               "the donor and donation list.");
 

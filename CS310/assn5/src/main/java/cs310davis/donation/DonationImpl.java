@@ -1,6 +1,8 @@
 package cs310davis.donation;
 
 
+import java.util.Iterator;
+
 import cs310davis.CharityConstants;
 
 /**
@@ -154,6 +156,48 @@ public class DonationImpl {
       added = false;
     }
     return added;
+  }
+
+  /**
+   * Remove donations with donorId from list and return true if successful.
+   *
+   * @param donorId donor id
+   * @return false if nothing was deleted
+   */
+  public Donation removeDonationById(int donorId){
+    boolean isRemoved = false;
+    Donation result = null;
+    for(DonationMapEntry donationMapEntry : donations){
+      DonationNode  donationNode= donationMapEntry.getValue();
+      Donation dn = null;
+      DonationNode previous = null;
+
+      while(donationNode != null && !isRemoved){
+        dn = donationNode.getDonation();
+        if(dn.getDonorId() == donorId){
+          if(previous != null){
+            previous.setNext(donationNode.getNext());
+          }
+        }
+        previous = donationNode;
+        donationNode = donationNode.getNext();
+      }
+    }
+
+    DonationMapEntry donationMapEntry = get(computeHash(donationId));
+    if(donationMapEntry != null){
+      DonationNode donationNode = donationMapEntry.getValue();
+      Donation dn = null;
+      while(donationNode !=null && result == null){
+        dn = donationNode.getDonation();
+        if(dn.getDonationId() == donationId){
+          result = dn;
+        }
+        donationNode = donationNode.getNext();
+
+      }
+    }
+    return result;
   }
 
 }
