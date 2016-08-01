@@ -274,6 +274,20 @@ public class Donation {
         return isEqual;
     }
 
+
+    @Override
+    public int hashCode(){
+        int hashCode =0;
+        String idVar = String.valueOf(donationId);
+        char[] charArray = idVar.toCharArray();
+
+
+        for(char c : charArray){
+            hashCode= hashCode + (int) c;
+        }
+        hashCode = hashCode % 23;
+        return hashCode;
+    }
     /**
      * To string string.
      *

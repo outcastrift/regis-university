@@ -23,9 +23,9 @@ public class DonorMapEntry
     }
 
     /**
-     * Clear entire map.
+     * Make empty.
      */
-    public void clearEntireMap()
+    public void makeEmpty()
     {
         currentSize = 0;
         keys = new Integer[maxSize];
@@ -43,7 +43,7 @@ public class DonorMapEntry
     }
 
     /**
-     * Tells you if the map is full
+     * Is full boolean.
      *
      * @return the boolean
      */
@@ -53,7 +53,7 @@ public class DonorMapEntry
     }
 
     /**
-     * Determines if the map is empty
+     * Is empty boolean.
      *
      * @return the boolean
      */
@@ -63,7 +63,7 @@ public class DonorMapEntry
     }
 
     /**
-     * Determines whether a specified key is within the map.
+     * Contains boolean.
      *
      * @param key the key
      * @return the boolean
@@ -72,19 +72,10 @@ public class DonorMapEntry
     {
         return get(key) !=  null;
     }
-
-
-    public int hash(int id){
-        int hashCode =0;
-        String idVar = String.valueOf(id);
-        char[] charArray = idVar.toCharArray();
-
-
-        for(char c : charArray){
-            hashCode= hashCode + (int) c;
-        }
-        hashCode = hashCode % 23;
-        return hashCode;
+ 
+    private int hash(Integer key)
+    {
+        return key.hashCode() % maxSize;
     }
 
     /**
@@ -112,7 +103,8 @@ public class DonorMapEntry
                 return; 
             }            
             i = (i + 1) % maxSize;            
-        } while (i != tmp);       
+        }
+        while (i != tmp);
     }
 
     /**
@@ -140,32 +132,25 @@ public class DonorMapEntry
      */
     public void remove(Integer key)
     {
-        boolean result =false;
-        if (!contains(key)) {
-            result =true;
-        }
+        if (!contains(key)) 
+            return;
  
-        //find key then remove it
+        /** find position key and delete **/
         int i = hash(key);
-
-
-        while (!key.equals(keys[i])) {
-            i = (i + 1) % maxSize;
+        while (!key.equals(keys[i])) 
+            i = (i + 1) % maxSize;        
             keys[i] = null;
             vals[i] = null;
-        }
  
         /** rehash all keys **/        
         for (i = (i + 1) % maxSize; keys[i] != null; i = (i + 1) % maxSize)
         {
-            Integer tempId = keys[i];
-            Donor tempObject = vals[i];
-
+            Integer tmp1 = keys[i];
+            Donor tmp2 = vals[i];
             keys[i] = null;
             vals[i] = null;
-
             currentSize--;  
-            insert(tempId, tempObject);
+            insert(tmp1, tmp2);            
         }
         currentSize--;        
     }
@@ -175,11 +160,10 @@ public class DonorMapEntry
      */
     public void printHashTable()
     {
-        System.out.println("\nPrinting Hash Map: ");
+        System.out.println("\nHash Table: ");
         for (int i = 0; i < maxSize; i++)
-            if (keys[i] != null) {
-                System.out.println(keys[i] + " " + vals[i]);
-            }
+            if (keys[i] != null)
+                System.out.println(keys[i] +" "+ vals[i]);
         System.out.println();
     }   
 }
