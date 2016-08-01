@@ -4,11 +4,12 @@ package cs310davis;
  * This software was created for Regis University's CS 310 Course
  * All rights to this software belong to Samuel Davis
  * appropriate licenses and restrictions apply.
- * Created by Samuel Davis on 7/17/16.
  * Class Description
  * The purpose of this class is to be the primary data structure for a Singly Linked List of Donor objects.
  * This class will keep reference to the next DonorNode in the List.
  * The last DonorNode within the List will return null on the getNext() signifying the end of the list.
+ *
+ * @author Samuel Kyle Davis
  */
 public class DonorNode {
     //NOTE The code pertaining to a Doubly Linked List remains commented out, I initially did this assignment in that

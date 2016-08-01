@@ -1,7 +1,14 @@
 package cs310davis;
 
 /**
- * The type Map entry.
+ * This software was created for Regis University's CS 310 Course
+ * All rights to this software belong to Samuel Davis
+ * appropriate licenses and restrictions apply.
+ *
+ * Class Description
+ *
+ * This class represents the Donor Hash Map Database
+ * @author Samuel Kyle Davis
  */
 public class DonorMapEntry
 {

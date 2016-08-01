@@ -1,6 +1,13 @@
 package cs310davis;
 
 /**
+ *
+ * This software was created for Regis University's CS 310 Course
+ * All rights to this software belong to Samuel Davis
+ * appropriate licenses and restrictions apply.
+ *
+ * Class Description
+ *
  * This class is used to represent a Donor in memory. It contains methods that check the validity of
  * emails as well as methods to create a donor object from a file.
  *

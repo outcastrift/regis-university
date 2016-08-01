@@ -3,6 +3,12 @@ package cs310davis;
 import java.io.*;
 
 /**
+ * This software was created for Regis University's CS 310 Course
+ * All rights to this software belong to Samuel Davis
+ * appropriate licenses and restrictions apply.
+ *
+ * Class Description
+ *
  * Main Entry class for this program, it will process a input file and create a report in a pre-defined directory based on the content of the file.
  *
  * @author Samuel Kyle Davis

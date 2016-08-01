@@ -2,6 +2,13 @@ package cs310davis;
 
 
 /**
+ *
+ * This software was created for Regis University's CS 310 Course
+ * All rights to this software belong to Samuel Davis
+ * appropriate licenses and restrictions apply.
+ *
+ * Class Description
+ *
  * This class is a implementation class to access the Donor Database, it contains functions to ensure that
  * ids are unique, to retrieve the database, and to add and remove entries from the database.
  * <p>

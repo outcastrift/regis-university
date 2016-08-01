@@ -1,9 +1,7 @@
 package cs310davis;
 
 
-/**
- * The type Donation Map entry.
- */
+
 public class DonationMapEntry
 {
     private DonationNode value;
@@ -12,7 +10,7 @@ public class DonationMapEntry
     /**
      * Instantiates a new Map entry.
      *
-     * @param capacity the capacity
+     * @param value the capacity
      */
     public DonationMapEntry( DonationNode value )
     {

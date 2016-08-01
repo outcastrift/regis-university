@@ -1,7 +1,16 @@
 package cs310davis;
 /**
- * The DonationImpl class.
+ * This software was created for Regis University's CS 310 Course
+ * All rights to this software belong to Samuel Davis
+ * appropriate licenses and restrictions apply.
  *
+ * This class is a implementation class to access the Donation Database, it contains functions to ensure that
+ * ids are unique, to retrieve the database, and to add and remove entries from the database.
+ * <p>
+ * This is the primary class for interacting with the Donation Database.
+ * Users should instantiate a instance of this class in order to perform operations on it.
+ *
+ * @author Samuel Kyle Davis
  */
 public class DonationImpl {
   private final DonationMapEntry[] donations = new DonationMapEntry[DonationConstants.MAX_CAPACITY];
