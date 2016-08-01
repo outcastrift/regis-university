@@ -4,9 +4,7 @@ package cs310davis.donor;
  * This software was created for Regis University's CS 310 Course
  * All rights to this software belong to Samuel Davis
  * appropriate licenses and restrictions apply.
- *
  * Class Description
- *
  * This class is used to represent a Donor in memory. It contains methods that check the validity of
  * emails as well as methods to create a donor object from a file.
  *
@@ -208,10 +206,20 @@ public class Donor {
     return sb.toString();
   }
 
+  /**
+   * Is gold star boolean.
+   *
+   * @return the boolean
+   */
   public boolean isGoldStar() {
     return isGoldStar;
   }
 
+  /**
+   * Sets gold star.
+   *
+   * @param goldStar the gold star
+   */
   public void setGoldStar(boolean goldStar) {
     isGoldStar = goldStar;
   }

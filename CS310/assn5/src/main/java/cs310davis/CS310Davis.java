@@ -16,15 +16,12 @@ import cs310davis.print.PrintImpl;
 /**
  * This software was created for Regis University's CS 310 Course All rights to this software belong to Samuel Davis
  * appropriate licenses and restrictions apply.
- *
  * Class Description
- *
  * Main Entry class for this program, it will process a input file and create a report in a pre-defined directory based
  * on the content of the file.
  *
  * @author Samuel Kyle Davis
- **/
-
+ */
 public class CS310Davis {
 
 
@@ -158,8 +155,8 @@ public class CS310Davis {
    * Method to process a Donor deletion
    *
    * @param inputLineValues the String[] containing the line read from a file. Based on input it will search the donor
-   *                        database and remove the donor.                         Prints a error if no donor exists
-   *                        with the given id.
+   *                                             database and remove the donor.                         Prints a error
+   *                        if no donor exists                        with the given id.
    */
   public static void processDonorDeletion(String[] inputLineValues) {
     int donorId = Integer.valueOf(inputLineValues[3]);
@@ -181,8 +178,8 @@ public class CS310Davis {
    * Method to process a Donation addition to the list.
    *
    * @param inputLineValues the String[] containing the line read from a file. Creates a Donation from input :
-   *                                     If the Donor id IS NOT Unique, and the Donation id IS UNIQUE it stores it into
-   *                        the database.
+   *                                                  If the Donor id IS NOT Unique, and the Donation id IS UNIQUE it
+   *                        stores it into                        the database.
    */
   public static void processDonationAddition(String[] inputLineValues) {
     Donation dn = setDonationAttributes(inputLineValues);
@@ -207,8 +204,8 @@ public class CS310Davis {
    * Method to process a Donation deletion.
    *
    * @param inputLineValues the String[] containing the line read from a file. Based on input it will search the
-   *                        donation database and remove the donation.                         Prints a error if no
-   *                        donation exists with the given id.
+   *                                       donation database and remove the donation.                         Prints a
+   *                        error if no                        donation exists with the given id.
    */
   public static void processDonationDeletion(String[] inputLineValues) {
     int donationId = Integer.valueOf(inputLineValues[3]);

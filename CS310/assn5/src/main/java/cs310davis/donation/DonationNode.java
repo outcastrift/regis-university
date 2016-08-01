@@ -21,7 +21,7 @@ public class DonationNode {
    *
    * @param donation a Donation object to add to the Linked List
    * @param next     a DonationNode object to store reference to, in the case where one does not exist pass in null.
-   **/
+   */
   public DonationNode(Donation donation, DonationNode next) {
     this.donation = donation;
     this.next = next;
@@ -30,7 +30,9 @@ public class DonationNode {
 
   /**
    * Returns the Donation stored within this DonationNode.
-   **/
+   *
+   * @return the donation
+   */
   public Donation getDonation() {
     return donation;
   }
@@ -39,14 +41,16 @@ public class DonationNode {
    * Sets the Donation stored within this DonationNode.
    *
    * @param donation The Donation object to be stored within this DonationNode.
-   **/
+   */
   public void setDonation(Donation donation) {
     this.donation = donation;
   }
 
   /**
    * Returns a reference to the next DonationNode within the List.
-   **/
+   *
+   * @return the next
+   */
   public DonationNode getNext() {
     return next;
   }
@@ -57,7 +61,7 @@ public class DonationNode {
    * you must call this method in order for the list to function.
    *
    * @param next The next DonationNode within the List.
-   **/
+   */
   public void setNext(DonationNode next) {
     this.next = next;
   }

@@ -3,6 +3,9 @@ package cs310davis.donation;
 
 import cs310davis.CharityConstants;
 
+/**
+ * The type Donation map entry.
+ */
 public class DonationMapEntry {
   private DonationNode value;
   private int hash;
@@ -40,6 +43,8 @@ public class DonationMapEntry {
   }
 
   /**
+   * Gets value.
+   *
    * @return the DonationNode
    */
   public DonationNode getValue() {
@@ -47,6 +52,8 @@ public class DonationMapEntry {
   }
 
   /**
+   * Sets value.
+   *
    * @param value the DonationNode to set
    */
   public void setValue(DonationNode value) {
@@ -55,6 +62,8 @@ public class DonationMapEntry {
   }
 
   /**
+   * Gets hash.
+   *
    * @return the hash
    */
   public int getHash() {

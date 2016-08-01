@@ -7,9 +7,7 @@ import cs310davis.CharityConstants;
  * This software was created for Regis University's CS 310 Course
  * All rights to this software belong to Samuel Davis
  * appropriate licenses and restrictions apply.
- *
  * Class Description
- *
  * This class is a implementation class to access the Donor Database, it contains functions to ensure that
  * ids are unique, to retrieve the database, and to add and remove entries from the database.
  * <p>
@@ -18,7 +16,6 @@ import cs310davis.CharityConstants;
  *
  * @author Samuel Kyle Davis
  */
-
 public class DonorImpl {
 
   /**
@@ -55,6 +52,12 @@ public class DonorImpl {
     donorMapEntry.insert(hashDonorId(donor.getDonorId()), donor);
   }
 
+  /**
+   * Hash donor id int.
+   *
+   * @param donorId the donor id
+   * @return the int
+   */
   public int hashDonorId(int donorId) {
     int hashCode = 0;
     String idVar = String.valueOf(donorId);
@@ -86,7 +89,10 @@ public class DonorImpl {
 
   /**
    * Method to get specified donor from the list.
-   **/
+   *
+   * @param donorID the donor id
+   * @return the donor
+   */
   public Donor getDonor(Integer donorID) {
     int hashedId = hashDonorId(donorID);
     return donorMapEntry.get(hashedId);

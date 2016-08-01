@@ -7,7 +7,6 @@ import cs310davis.CharityConstants;
  * This software was created for Regis University's CS 310 Course
  * All rights to this software belong to Samuel Davis
  * appropriate licenses and restrictions apply.
- *
  * This class is a implementation class to access the Donation Database, it contains functions to ensure that
  * ids are unique, to retrieve the database, and to add and remove entries from the database.
  * <p>
@@ -95,6 +94,12 @@ public class DonationImpl {
     return found;
   }
 
+  /**
+   * Get donation by id donation.
+   *
+   * @param donationId the donation id
+   * @return the donation
+   */
   public Donation getDonationById(int donationId){
     Donation result = null;
     DonationMapEntry donationMapEntry = get(computeHash(donationId));
@@ -121,7 +126,6 @@ public class DonationImpl {
    * @param donationId the donation id
    * @return the boolean
    */
-
   public boolean isIdUnique(int donationId) {
     /*boolean isUnique =false;
     if(donations){
@@ -140,10 +144,8 @@ public class DonationImpl {
    * Add donation to the database..
    *
    * @param obj the obj
-   * @param obj must be of type Donation otherwise method returns false.
    * @return false if unsuccessful
    */
-
   public boolean add(Object obj) {
     boolean added = true;
     if (obj instanceof Donation) {
@@ -198,6 +200,7 @@ public class DonationImpl {
     }
     return isRemoved;
   }
+
   /**
    * Remove donations with donationId from list and return true if successful.
    *

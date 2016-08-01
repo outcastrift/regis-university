@@ -29,6 +29,14 @@ public class PrintImpl {
    */
   private static final String OUTPUT_DIRECTORY = "output/";
 
+  /**
+   * Print tax exempt report.
+   *
+   * @param filename             the filename
+   * @param donorImpl            the donor
+   * @param donationImpl         the donation
+   * @param taxExemptionRequests the tax exemption requests
+   */
   @SuppressWarnings("unchecked")
   public static void printTaxExemptReport(String filename, DonorImpl donorImpl, DonationImpl donationImpl,
                                           HashMap<Integer, ArrayList<Integer>> taxExemptionRequests) {

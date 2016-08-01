@@ -4,9 +4,7 @@ package cs310davis.donor;
  * This software was created for Regis University's CS 310 Course
  * All rights to this software belong to Samuel Davis
  * appropriate licenses and restrictions apply.
- *
  * Class Description
- *
  * This class represents the Donor Hash Map Database
  *
  * @author Samuel Kyle Davis
@@ -68,6 +66,7 @@ public class DonorMapEntry {
    * Remove.
    *
    * @param key the key
+   * @return the boolean
    */
   public boolean remove(Integer key) {
     boolean wasRemoved = false;
