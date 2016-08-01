@@ -41,12 +41,6 @@ public class CS310Davis {
     public static void main(String[] args) {
         // Call the method to read and process the data file.
         processFile();
-        // Call the method to create the report.
-        createReport();
-        // Call the method to create the cleaned report.
-        createCleanReport();
-        //Call the method to organize and create the charity dinner.
-        organizeCharityDinner();
 
     }
 
@@ -98,36 +92,10 @@ public class CS310Davis {
         }
     }
 
-    /**
-     * Method to create a report via the PrintImpl.class.
-     */
-    public static void createReport() {
-        printImpl.printReportToDirectory("assn4initialReport.txt",donationLogImpl,donorLogImpl);
-    }
 
-    /**
-     * This method will execute the traverseDisplay methods from the DonationLogImpl and the DonorLogImpl.
-     * Afterwards it will execute the cleanUp() methods from the DonationLogImpl and the DonorLogImpl.
-     * Once the lists have been cleaned it will execute the printReportToDirectory() method with a different filename.
-     **/
 
-    public static void createCleanReport() {
-        //Display Each list using the traverseDisplay() methods.
-        donorLogImpl.traverseDisplay();
-        donationLogImpl.traverseDisplay();
 
-        // Clean up each list by executing the cleanUp() method within each.
-        donorLogImpl.cleanUp();
-        donationLogImpl.cleanUp();
-        // Create the report.
-        printImpl.printReportToDirectory("assn4cleanReport.txt",donationLogImpl,donorLogImpl);
-    }
 
-    public static void organizeCharityDinner(){
-    readDinersInput();
-    printImpl.printDinnerReport(seatingImpl.getSeating(),donorLogImpl, tableStackImpl,donorQueueImpl,"dinnerReport.txt");
-
-    }
 
     /**
      * Method to process a Donor addition to the list

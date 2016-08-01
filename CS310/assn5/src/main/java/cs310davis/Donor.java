@@ -187,19 +187,7 @@ public class Donor {
     }
 
 
-    @Override
-    public int hashCode(){
-        int hashCode =0;
-        String idVar = String.valueOf(donorId);
-        char[] charArray = idVar.toCharArray();
 
-
-        for(char c : charArray){
-            hashCode= hashCode + (int) c;
-        }
-        hashCode = hashCode % 23;
-        return hashCode;
-    }
     /**
      * Creates a string representation of this class.
      *

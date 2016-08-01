@@ -3,23 +3,23 @@ package cs310davis;
 /**
  * The type Map entry.
  */
-public class DonorMapEntry
+public class DonationMapEntry
 {
-    private int currentSize, maxSize;       
-    private Integer[] hashedDonorIds;
-    private Donor[] donorValues;
+    private int currentSize, maxSize;
+    private Integer[] hashedDonationIds;
+    private Donation[] donationValues;
 
     /**
      * Instantiates a new Map entry.
      *
      * @param capacity the capacity
      */
-    public DonorMapEntry(int capacity)
+    public DonationMapEntry(int capacity)
     {
         currentSize = 0;
         maxSize = capacity;
-        hashedDonorIds = new Integer[maxSize];
-        donorValues = new Donor[maxSize];
+        hashedDonationIds = new Integer[maxSize];
+        donationValues = new Donation[maxSize];
     }
 
     /**
@@ -28,8 +28,8 @@ public class DonorMapEntry
     public void makeEmpty()
     {
         currentSize = 0;
-        hashedDonorIds = new Integer[maxSize];
-        donorValues = new Donor[maxSize];
+        hashedDonationIds = new Integer[maxSize];
+        donationValues = new Donation[maxSize];
     }
 
     /**
@@ -84,25 +84,25 @@ public class DonorMapEntry
      * @param key the key
      * @param val the val
      */
-    public void insert(Integer key, Donor val)
+    public void insert(Integer key, Donation val)
     {                
         int tmp = hash(key);
         int i = tmp;
         do
         {
-            if (hashedDonorIds[key] == null)
+            if (hashedDonationIds[i] == null)
             {
-                hashedDonorIds[key] = key;
-                donorValues[key] = val;
+                hashedDonationIds[i] = key;
+                donationValues[i] = val;
                 currentSize++;
                 return;
             }
-            if (hashedDonorIds[key].equals(key))
+            if (hashedDonationIds[i].equals(key))
             { 
-                donorValues[key] = val;
+                donationValues[i] = val;
                 return; 
-            }
-            i = (i + 1) % maxSize;
+            }            
+            i = (i + 1) % maxSize;            
         }
         while (i != tmp);
     }
@@ -113,13 +113,13 @@ public class DonorMapEntry
      * @param key the key
      * @return the string
      */
-    public Donor get(Integer key)
+    public Donation get(Integer key)
     {
         int i = hash(key);
-        while (hashedDonorIds[i] != null)
+        while (hashedDonationIds[i] != null)
         {
-            if (hashedDonorIds[i].equals(key))
-                return donorValues[i];
+            if (hashedDonationIds[i].equals(key))
+                return donationValues[i];
             i = (i + 1) % maxSize;
         }            
         return null;
@@ -130,31 +130,29 @@ public class DonorMapEntry
      *
      * @param key the key
      */
-    public boolean remove(Integer key)
+    public void remove(Integer key)
     {
-      boolean wasRemoved = false;
-        if (contains(key)) {
-          /** find position key and delete **/
-          int i = hash(key);
-          while (!key.equals(hashedDonorIds[i]))
-            i = (i + 1) % maxSize;
-          hashedDonorIds[i] = null;
-          donorValues[i] = null;
-
-          /** rehash all hashedDonorIds **/
-          for (i = (i + 1) % maxSize; hashedDonorIds[i] != null; i = (i + 1) % maxSize)
-          {
-            Integer tmp1 = hashedDonorIds[i];
-            Donor tmp2 = donorValues[i];
-            hashedDonorIds[i] = null;
-            donorValues[i] = null;
-            currentSize--;
-            insert(tmp1, tmp2);
-          }
-          wasRemoved =true;
-          currentSize--;
+        if (!contains(key)) 
+            return;
+ 
+        /** find position key and delete **/
+        int i = hash(key);
+        while (!key.equals(hashedDonationIds[i]))
+            i = (i + 1) % maxSize;        
+            hashedDonationIds[i] = null;
+            donationValues[i] = null;
+ 
+        /** rehash all hashedDonationIds **/
+        for (i = (i + 1) % maxSize; hashedDonationIds[i] != null; i = (i + 1) % maxSize)
+        {
+            Integer tmp1 = hashedDonationIds[i];
+            Donation tmp2 = donationValues[i];
+            hashedDonationIds[i] = null;
+            donationValues[i] = null;
+            currentSize--;  
+            insert(tmp1, tmp2);            
         }
-       return wasRemoved;
+        currentSize--;        
     }
 
     /**
@@ -164,8 +162,8 @@ public class DonorMapEntry
     {
         System.out.println("\nHash Table: ");
         for (int i = 0; i < maxSize; i++)
-            if (hashedDonorIds[i] != null)
-                System.out.println(hashedDonorIds[i] +" "+ donorValues[i]);
+            if (hashedDonationIds[i] != null)
+                System.out.println(hashedDonationIds[i] +" "+ donationValues[i]);
         System.out.println();
     }   
 }

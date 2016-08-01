@@ -1,7 +1,5 @@
 package cs310davis;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  * This class is a implementation class to access the Donor Database, it contains functions to ensure that
@@ -20,28 +18,16 @@ public class DonorLogImpl {
      * A arraylist ordered by donor id.
      */
 
-    private DonorNode donorLinkedList = null; //Empty Linked List
-    private HashSet<Donor> donorHashSet = new HashSet<Donor>(23);
+    private DonorMapEntry donorMapEntry = new DonorMapEntry(23);
+
     /**
      * Gets the Donor Database.
      *
      * @return Donor Database
      */
     // return the ArrayList attribute
-    public DonorNode getDonorList() {
-        return this.donorLinkedList;
-    }
-
-
-    public int hashDonorId(int donorId){
-        int hashCode =0;
-        String id = String.valueOf(donorId);
-        char[] charArray = id.toCharArray();
-        for(char c : charArray){
-           hashCode= hashCode + (int) c;
-        }
-        hashCode = hashCode % 23;
-        return hashCode;
+    public DonorMapEntry getDonorMapEntry() {
+        return this.donorMapEntry;
     }
 
     /**
@@ -61,47 +47,7 @@ public class DonorLogImpl {
             System.out.println("ERROR : Unable to add Donor to the Donor List.  Object was not of type donor. ");
             return;
         }
-        if (donorLinkedList == null) {
-            donorLinkedList = new DonorNode(donor, null);
-        } else {
-
-            if (donor.getDonorId() < donorLinkedList.getDonor().getDonorId()) {
-                //Donor ID is less than the first element within the LinkedList
-                //Make this donor the new starting point.
-                this.donorLinkedList = new DonorNode(donor, donorLinkedList);
-            } else {
-                DonorNode placementList = donorLinkedList;
-                while (placementList != null) {
-                    DonorNode current = placementList;
-                    DonorNode next = current.getNext();
-                    if (donor.getDonorId() > current.getDonor().getDonorId()) {
-                        //DonorId is Greater than current element
-                        if (next != null) {
-                            if (donor.getDonorId() < current.getNext().getDonor().getDonorId()) {
-                                //Donor Id is less than the next element which means it
-                                //should be stored in front of it.
-                                current.setNext(new DonorNode(donor, current.getNext()));
-                                break;
-                            } else {
-                                //Donor ID is greater than both the current element and the next element
-                                //Loop again
-                            }
-                        }
-
-                    }
-                    //Code to keep this loop moving without going infinite
-                    placementList = next;
-                    if (placementList == null) {
-                        //if placement list is null it means we are at the last element in the list
-                        //we need to add our element to the end
-                        current.setNext(new DonorNode(donor, null));
-                        break;
-
-                    }
-                }
-            }
-
-        }
+        donorMapEntry.insert(hashDonorId(donor.getDonorId()),donor);
     }
 
     /**
@@ -113,78 +59,34 @@ public class DonorLogImpl {
      */
     public boolean isIdUnique(int id) {
         boolean isUnique = true;
-        DonorNode uniqueList = donorLinkedList;
-        Donor d = null;
-        while (uniqueList != null) {
-            d = uniqueList.getDonor();
-            if (d.getDonorId() == id) {
-                isUnique = false;
-                break;
+        int size =donorMapEntry.getSize();
+        int hashedId = hashDonorId(id);
+        for(int x =0; x < size ;x++){
+            if(donorMapEntry.get(hashedId) != null){
+               isUnique =false;
             }
-            uniqueList = uniqueList.getNext();
         }
         return isUnique;
     }
 
-    /**
-     * Method to traverse the entire list of Donors executing the toString() method of each Donor.
-     **/
-    public void traverseDisplay() {
-        System.out.println("Donor List : \n");
-        //Traverse the list of donors using toString() to display each object in the list.
-        DonorNode traverseList = donorLinkedList;
-        Donor d = null;
-        while (traverseList != null) {
-            d = traverseList.getDonor();
-            System.out.println(d.toString());
-            traverseList = traverseList.getNext();
+    public int hashDonorId(int donorId){
+        int hashCode =0;
+        String idVar = String.valueOf(donorId);
+        char[] charArray = idVar.toCharArray();
+        for(char c : charArray){
+            hashCode= hashCode + (int) c;
         }
+        hashCode = hashCode % 23;
+        return hashCode;
     }
+
 
     /**
      * Method to get specified donor from the list.
      **/
     public Donor getDonor(Integer donorID) {
-        Donor result = null;
-        DonorNode getList = donorLinkedList;
-        Donor d = null;
-        while (getList != null) {
-            d = getList.getDonor();
-            if(d.getDonorId().equals(donorID)){
-                result = d;
-                break;
-            }
-            getList = getList.getNext();
-        }
-        return result;
-    }
-
-    /**
-     * Validates the List of Donors by using the isEmailValid() method within the Donor Class.
-     * If an email address is invalid the donor will be removed from the list along with all
-     * Donations associated with that Donor.
-     **/
-    public void cleanUp() {
-        //validate and clean up the donor list
-        //All operations performed upon the list will be printed to the console.
-        System.out.println("Beginning to Validate the Donor List : \n");
-        DonorNode cleanUpList = donorLinkedList;
-
-        while (cleanUpList != null) {
-            Donor d = cleanUpList.getDonor();
-            if (!d.isEmailValid(d.getDonorEmailAddress())) {
-                System.out.println("The donor with donor ID of [" + d.getDonorId() + "]" +
-                        "  supplied a invalid email address of [" +
-                        d.getDonorEmailAddress() + "] and will be removed from the list of donors. ");
-                remove(d.getDonorId());
-                DonationLogImpl.remove(d.getDonorId());
-            }
-            cleanUpList = cleanUpList.getNext();
-
-        }
-
-        System.out.println("Finished Validating the Donor List : \n");
-
+        int hashedId = hashDonorId(donorID);
+        return donorMapEntry.get(hashedId);
     }
 
     /**
@@ -197,53 +99,8 @@ public class DonorLogImpl {
     // remove donor with donorId from list
     // and return true if successful
     public boolean remove(int donorId) {
-        DonorNode removalList = donorLinkedList;
-        boolean wasRemoved = false;
-        Donor d = null;
-        DonorNode previous = null;
-        DonorNode next = null;
-        DonorNode current = null;
-        while (removalList != null) {
-            current = removalList;
-            next = removalList.getNext();
-            d = current.getDonor();
-            if (d.getDonorId() == donorId) {
-                if (previous == null) {
-                    // We are deleting the first element in the List
-                    //set the current node to null
-                    // set the real donorLinkedList to start at the new Element
-                    this.donorLinkedList = next;
-                    wasRemoved = true;
-                } else {
-                    //remove the entry from the list
-                    //set the previous node to link to the next node
-                    //set the current node to null
-                    current = null;
-                    previous.setNext(next);
-                    wasRemoved = true;
-                }
-            }
-            previous = current;
-            removalList = removalList.getNext();
 
-        }
-        if (!wasRemoved) {
-            System.out.println("ERROR: Unable to remove Donor from the List the DonorId specified" +
-                    " was not located within the list.");
-
-        }
-        return wasRemoved;
-    }
-
-    public int getSizeOfList() {
-        DonorNode sizeCounter = donorLinkedList;
-
-        int size = 0;
-        while (sizeCounter != null) {
-            size++;
-            sizeCounter = sizeCounter.getNext();
-        }
-        return size;
+        return donorMapEntry.remove(hashDonorId(donorId));
     }
 
 
