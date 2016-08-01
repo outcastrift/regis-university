@@ -56,7 +56,7 @@ public class DonationMapEntry
           idStr = String.valueOf( id );
           
           for( int i = 0; i < idStr.length(); i++ ){
-            theHash += idStr.charAt( 0 );
+            theHash += idStr.charAt( i );
           }
           
           theHash = theHash % DonationConstants.MAX_CAPACITY;
