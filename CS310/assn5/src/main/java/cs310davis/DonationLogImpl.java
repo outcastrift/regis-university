@@ -23,7 +23,6 @@ public class DonationLogImpl {
     private static HashSet<Donation> donationHashSet = new HashSet<Donation>(23);
     /**
      * Remove donations with donorId from list and return true if successful.
-     *
      * @param donorId the donor id
      * @return false if nothing was deleted
      */

@@ -28,9 +28,6 @@ public class CS310Davis {
      * The Print.
      */
     private static PrintImpl printImpl = new PrintImpl();
-    private static DonorQueueImpl donorQueueImpl = new DonorQueueImpl();
-    private static TableStackImpl tableStackImpl = new TableStackImpl();
-    private static SeatingImpl seatingImpl = new SeatingImpl(donorQueueImpl,tableStackImpl);
 
 
     /**
@@ -134,7 +131,7 @@ public class CS310Davis {
         }
     }
 
-    /**
+    /**2
      * Method to process a Donation addition to the list.
      *
      * @param inputLineValues the String[] containing the line read from a file.
@@ -177,45 +174,6 @@ public class CS310Davis {
         } else {
             System.out.println("\n ERROR : A donation with the id of " + donationId + " was not within the list and was not deleted.");
 
-        }
-    }
-
-    public static void readDinersInput(){
-        ClassLoader classLoader = CS310Davis.class.getClassLoader();
-        File file = null;
-        try {
-            file = new File(classLoader.getResource(DINER_INPUT_FILENAME).getFile());
-        } catch (Exception e) {
-            System.out.println("\n ERROR : The file " + file.getName() + " was unable to be found");
-            e.printStackTrace();
-            System.exit(1);
-        }
-        System.out.println("Reading data from file " + file.getName());
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] attributes = line.split(" ");
-                if (attributes[0].equalsIgnoreCase("ARRIVE")) {
-                 Donor donorArrived = donorLogImpl.getDonor(Integer.valueOf(attributes[1]));
-                    if(donorArrived !=null){
-                        System.out.println("Donor "+ donorArrived.getDonorFirstName()+ " " + donorArrived.getDonorLastName() + " has arrived.");
-                        seatingImpl.processDonorArrival(donorArrived);
-                    }else{
-                        System.out.println("A donor with ID of "+attributes[1]+ " tried to crash the dinner but was turned away.");
-                    }
-                } else if (attributes[0].equalsIgnoreCase("DEPART")) {
-                    Donor donorDeparting = donorLogImpl.getDonor(Integer.valueOf(attributes[1]));
-                    if(donorDeparting !=null){
-                        System.out.println("Donor "+ donorDeparting.getDonorFirstName()+ " " + donorDeparting.getDonorLastName()+ " has departed.");
-                        seatingImpl.processDonorDeparture(donorDeparting);
-
-                    }
-
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
         }
     }
 

@@ -13,12 +13,16 @@ public class TestBed {
 
   DonationLogImpl donationLog = new DonationLogImpl();
   DonorLogImpl donorLog = new DonorLogImpl();
+  DonorMapEntry donorMapEntry = new DonorMapEntry(23);
   Integer[] donors = new Integer[]{1,3,4,6,7,8,9,10};
   @Test
   public void testDonationLog(){
     int mine =0;
     for(int x : donors){
       mine =hashCode(x);
+      Donor donor = new Donor();
+      donor.setDonorId(x);
+      donorMapEntry.insert(mine,donor);
       System.out.println("Hashing Value of X= ["+x+"] Hashed Value = "+mine);
     }
 

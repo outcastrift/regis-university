@@ -273,7 +273,7 @@ public class Donation {
 
         return isEqual;
     }
-    
+
     /**
      * To string string.
      *
