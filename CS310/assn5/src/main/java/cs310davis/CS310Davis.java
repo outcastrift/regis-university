@@ -28,7 +28,6 @@ public class CS310Davis {
      * The Print.
      */
     private static PrintImpl printImpl = new PrintImpl();
-    private static DonorQueueImpl donorQueueImpl = new DonorQueueImpl();
 
 
     /**
@@ -132,7 +131,7 @@ public class CS310Davis {
         }
     }
 
-    /**
+    /**2
      * Method to process a Donation addition to the list.
      *
      * @param inputLineValues the String[] containing the line read from a file.
