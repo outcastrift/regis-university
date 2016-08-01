@@ -1,8 +1,6 @@
 package cs310davis.donation;
 
 
-import java.util.Iterator;
-
 import cs310davis.CharityConstants;
 
 /**
@@ -19,7 +17,7 @@ import cs310davis.CharityConstants;
  * @author Samuel Kyle Davis
  */
 public class DonationImpl {
-  private final DonationMapEntry[] donations = new DonationMapEntry[CharityConstants.DONOR_MAX_CAPACITY];
+  private static final DonationMapEntry[] donations = new DonationMapEntry[CharityConstants.DONOR_MAX_CAPACITY];
 
   /**
    * Default Constructor
@@ -164,40 +162,86 @@ public class DonationImpl {
    * @param donorId donor id
    * @return false if nothing was deleted
    */
-  public Donation removeDonationById(int donorId){
+  public static boolean removeDonationByDonorId(int donorId){
     boolean isRemoved = false;
-    Donation result = null;
-    for(DonationMapEntry donationMapEntry : donations){
-      DonationNode  donationNode= donationMapEntry.getValue();
+    for(DonationMapEntry donationMapEntry : donations) {
       Donation dn = null;
       DonationNode previous = null;
-
-      while(donationNode != null && !isRemoved){
-        dn = donationNode.getDonation();
-        if(dn.getDonorId() == donorId){
-          if(previous != null){
-            previous.setNext(donationNode.getNext());
+      DonationNode removalList = donationMapEntry.getValue();
+      DonationNode next = null;
+      DonationNode current = null;
+      while (removalList != null) {
+        current = removalList;
+        next = removalList.getNext();
+        dn = current.getDonation();
+        if (dn.getDonorId() == donorId) {
+          if (previous == null) {
+            // We are deleting the first element in the List
+            //set the current node to null
+            // set the real donorLinkedList to start at the new Element
+            donationMapEntry.setValue(next);
+            isRemoved = true;
+          } else {
+            //remove the entry from the list
+            //set the previous node to link to the next node
+            //set the current node to null
+            current = null;
+            previous.setNext(next);
+            isRemoved = true;
           }
         }
-        previous = donationNode;
-        donationNode = donationNode.getNext();
-      }
-    }
+        previous = current;
+        removalList = removalList.getNext();
 
-    DonationMapEntry donationMapEntry = get(computeHash(donationId));
-    if(donationMapEntry != null){
-      DonationNode donationNode = donationMapEntry.getValue();
+      }
+
+    }
+    return isRemoved;
+  }
+  /**
+   * Remove donations with donationId from list and return true if successful.
+   *
+   * @param donationId donor id
+   * @return false if nothing was deleted
+   */
+  public static boolean removeDonationByDonationId(int donationId){
+    boolean isRemoved = false;
+    for(DonationMapEntry donationMapEntry : donations) {
       Donation dn = null;
-      while(donationNode !=null && result == null){
-        dn = donationNode.getDonation();
-        if(dn.getDonationId() == donationId){
-          result = dn;
+      DonationNode previous = null;
+      DonationNode removalList = donationMapEntry.getValue();
+      DonationNode next = null;
+      DonationNode current = null;
+      while (removalList != null) {
+        current = removalList;
+        next = removalList.getNext();
+        dn = current.getDonation();
+        if (dn.getDonationId() == donationId) {
+          if (previous == null) {
+            // We are deleting the first element in the List
+            //set the current node to null
+            // set the real donorLinkedList to start at the new Element
+            donationMapEntry.setValue(next);
+            isRemoved = true;
+            break;
+          } else {
+            //remove the entry from the list
+            //set the previous node to link to the next node
+            //set the current node to null
+            current = null;
+            previous.setNext(next);
+            isRemoved = true;
+            break;
+          }
         }
-        donationNode = donationNode.getNext();
+        previous = current;
+        removalList = removalList.getNext();
 
       }
+
     }
-    return result;
+    return isRemoved;
   }
 
-}
+  }
+

@@ -165,7 +165,7 @@ public class CS310Davis {
     int donorId = Integer.valueOf(inputLineValues[3]);
     if (!donorImpl.isIdUnique(donorId)) {
       donorImpl.remove(donorId);
-      DonationImpl.remove(donorId);
+      DonationImpl.removeDonationByDonorId(donorId);
       System.out.println("\n A donor with the id of " + donorId + " and his donations was successfully deleted from " +
               "the donor and donation list.");
 
@@ -213,7 +213,7 @@ public class CS310Davis {
   public static void processDonationDeletion(String[] inputLineValues) {
     int donationId = Integer.valueOf(inputLineValues[3]);
     if (!donationImpl.isIdUnique(donationId)) {
-      DonationLogImpl.remove(donationId);
+      DonationImpl.removeDonationByDonorId(donationId);
       System.out.println("\n A donation with the id of " + donationId + " was successfully deleted.");
     } else {
       System.out.println("\n ERROR : A donation with the id of " + donationId + " was not within the list and " +
