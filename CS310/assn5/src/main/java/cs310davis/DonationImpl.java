@@ -36,6 +36,7 @@ public class DonationImpl {
               donationNode = donationNode.getNext();
             }
             donationNode.setNext( entry.getValue() );
+            isPut = true;
           }
         }
       }
