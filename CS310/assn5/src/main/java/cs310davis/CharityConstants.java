@@ -7,8 +7,11 @@ package cs310davis;
  *
  * Class Description
  * A Constants Class to hold commonly used variables.
+ *
  * @author Samuel Kyle Davis
  */
-public class DonationConstants {
-  public static int MAX_CAPACITY = 23;
+public class CharityConstants {
+  public static int DONATION_MAX_CAPACITY = 23;
+  public static int DONOR_MAX_CAPACITY = 23;
+
 }

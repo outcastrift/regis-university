@@ -2,6 +2,11 @@ package cs310davis;
 
 import org.junit.Test;
 
+import cs310davis.donation.DonationLogImpl;
+import cs310davis.donor.Donor;
+import cs310davis.donor.DonorImpl;
+import cs310davis.donor.DonorMapEntry;
+
 /**
  * This software was created for
  * rights to this software belong to
@@ -12,7 +17,7 @@ public class TestBed {
   //Test hashing algo
 
   DonationLogImpl donationLog = new DonationLogImpl();
-  DonorLogImpl donorLog = new DonorLogImpl();
+  DonorImpl donorLog = new DonorImpl();
   DonorMapEntry donorMapEntry = new DonorMapEntry(23);
   Integer[] donors = new Integer[]{1,3,4,6,7,8,9,10};
   @Test
