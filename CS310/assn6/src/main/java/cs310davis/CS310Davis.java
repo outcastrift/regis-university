@@ -101,10 +101,7 @@ public class CS310Davis {
     }
   }
 
-  /**
-   * Void method to process tax exemptions from the donorRequests file.
-   * This method is what will read the tax exemptions from the file.
-   * **/
+
   private static void processTaxExemptionsFile() {
     HashMap<Integer,ArrayList<Integer>> processedExemptionRequests = new HashMap<Integer,ArrayList<Integer>>();
     ClassLoader classLoader = CS310Davis.class.getClassLoader();

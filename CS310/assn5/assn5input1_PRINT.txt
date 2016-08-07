@@ -1,0 +1,7 @@
+DONOR,ADD,12,George,Washington,gwashington@mtvernon.com,202-123-4567
+DONATION,ADD,123,12,Payroll deduction,22.22,07/04/1776,Y,1001
+DONATION,ADD,321,12,Event contribution,200.00,07/05/1776,Y,1002
+DONATION,ADD,132,12,Contribution,100.00,08/10/1776,N,1002
+DONOR,ADD,22,Thomas,Jefferson,tjeff@monticello.com,303-333-3333
+DONATION,ADD,301,22,Signing donation,10000.00,07/04/1776,Y,2222
+DONATION,ADD,310,22,Payroll deduction,22.22,09/01/1810,Y,2223

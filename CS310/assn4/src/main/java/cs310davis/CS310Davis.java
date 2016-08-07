@@ -189,8 +189,6 @@ public class CS310Davis {
                     } else if (attributes[1].equalsIgnoreCase("DEL")) {
                         processDonorDeletion(attributes);
                     }
-
-
                 } else if (attributes[0].equalsIgnoreCase("DONATION")) {
                     if (attributes[1].equalsIgnoreCase("ADD")) {
                         processDonationAddition(attributes);
