@@ -90,6 +90,7 @@ public class DonorBinaryTree {
     DonorNode parentDeleteNode = rootOfTree;
     boolean wasToTheLeft = true;
     while(wasRemoved){
+
       while (deleteNode.getDonorId() != donorId) {
         parentDeleteNode = deleteNode;
         if (donorId < deleteNode.getDonorId()) {

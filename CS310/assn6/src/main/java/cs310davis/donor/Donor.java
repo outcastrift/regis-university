@@ -32,7 +32,7 @@ public class Donor {
    */
   private String donorEmailAddress;
 
-  private boolean isGoldStar;
+  private Boolean isGoldStar;
 
   /**
    * Instantiates a new Donor with specified parameters.
@@ -44,12 +44,13 @@ public class Donor {
    * @param donorEmailAddress the donor email address
    */
   public Donor(Integer donorId, String donorFirstName, String donorLastName, String donorPhoneNumber, String
-          donorEmailAddress) {
+          donorEmailAddress, boolean isGoldStar) {
     this.donorId = donorId;
     this.donorFirstName = donorFirstName;
     this.donorLastName = donorLastName;
     this.donorPhoneNumber = donorPhoneNumber;
     this.donorEmailAddress = donorEmailAddress;
+    this.isGoldStar =isGoldStar;
   }
 
   /**
@@ -220,7 +221,7 @@ public class Donor {
    *
    * @param goldStar the gold star
    */
-  public void setGoldStar(boolean goldStar) {
+  public void setGoldStar(Boolean goldStar) {
     isGoldStar = goldStar;
   }
 }

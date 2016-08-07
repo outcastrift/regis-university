@@ -1,95 +1,71 @@
 package cs310davis.donor;
 
-import org.junit.Test; 
-import org.junit.Before; 
-import org.junit.After; 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-/** 
-* DonorBinaryTree Tester. 
-* 
-* @author <Authors name> 
-* @since <pre>Aug 7, 2016</pre> 
-* @version 1.0 
-*/ 
-public class DonorBinaryTreeTest { 
+/**
+ * DonorBinaryTree Tester.
+ *
+ * @author <Authors name>
+ * @version 1.0
+ * @since <pre>Aug 7, 2016</pre>
+ */
+public class DonorBinaryTreeTest {
+  static DonorBinaryTree donorBinaryTree;
+  static Donor donor = new Donor(1000, "Sam", "Davis", "315-281-5502", "sam.davis@techngs.com",true);
 
-@Before
-public void before() throws Exception { 
-} 
+  @Before
+  public void before() throws Exception {
+    donorBinaryTree = new DonorBinaryTree();
+  }
 
-@After
-public void after() throws Exception { 
-} 
+  /**
+   * Method: addNode(Donor donor)
+   */
+  @Test
+  public void testAddNode() throws Exception {
+    donorBinaryTree.addNode(donor);
+    Assert.assertTrue(donorBinaryTree.findDonorInTree(donor.getDonorId())!= null);
+  }
 
-/** 
-* 
-* Method: addNode(Donor donor) 
-* 
-*/ 
-@Test
-public void testAddNode() throws Exception { 
-//TODO: Test goes here... 
-} 
+  /**
+   * Method: traverseTreeInOrder(DonorNode donorNode)
+   */
+  @Test
+  public void testTraverseTreeInOrder() throws Exception {
+    donorBinaryTree.addNode(donor);
+    donorBinaryTree.traverseTreeInOrder(donorBinaryTree.getRootOfTree());
+  }
 
-/** 
-* 
-* Method: traverseTreeInOrder(DonorNode donorNode) 
-* 
-*/ 
-@Test
-public void testTraverseTreeInOrder() throws Exception { 
-//TODO: Test goes here... 
-} 
+  /**
+   * Method: findDonorInTree(int donorId)
+   */
+  @Test
+  public void testFindDonorInTree() throws Exception {
+    donorBinaryTree.addNode(donor);
+    Assert.assertTrue(donorBinaryTree.findDonorInTree(donor.getDonorId())!= null);
+  }
 
-/** 
-* 
-* Method: findDonorInTree(int donorId) 
-* 
-*/ 
-@Test
-public void testFindDonorInTree() throws Exception { 
-//TODO: Test goes here... 
-} 
-
-/** 
-* 
-* Method: remove(int donorId) 
-* 
-*/ 
-@Test
-public void testRemove() throws Exception { 
-//TODO: Test goes here... 
-} 
-
-/** 
-* 
-* Method: getRootOfTree() 
-* 
-*/ 
-@Test
-public void testGetRootOfTree() throws Exception { 
-//TODO: Test goes here... 
-} 
+  /**
+   * Method: remove(int donorId)
+   */
+  @Test
+  public void testRemoveSuccess() throws Exception {
+    donorBinaryTree.addNode(donor);
+    Assert.assertTrue(donorBinaryTree.remove(donor.getDonorId()));
+  }
 
 
-/** 
-* 
-* Method: getReplacementDonorNode(DonorNode incomingNode) 
-* 
-*/ 
-@Test
-public void testGetReplacementDonorNode() throws Exception { 
-//TODO: Test goes here... 
-/* 
-try { 
-   Method method = DonorBinaryTree.getClass().getMethod("getReplacementDonorNode", DonorNode.class); 
-   method.setAccessible(true); 
-   method.invoke(<Object>, <Parameters>); 
-} catch(NoSuchMethodException e) { 
-} catch(IllegalAccessException e) { 
-} catch(InvocationTargetException e) { 
-} 
-*/ 
-} 
+  /**
+   * Method: getRootOfTree()
+   */
+  @Test
+  public void testGetRootOfTree() throws Exception {
+    donorBinaryTree.addNode(donor);
+    Assert.assertNotNull(donorBinaryTree.getRootOfTree());
 
-} 
+  }
+
+
+}

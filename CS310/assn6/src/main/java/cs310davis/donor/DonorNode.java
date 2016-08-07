@@ -2,7 +2,7 @@ package cs310davis.donor;
 
 public class DonorNode {
 
-  int donorId;
+  Integer donorId;
   private Donor donor;
 
   private DonorNode leftChild;
@@ -25,8 +25,12 @@ public class DonorNode {
 
   }
 
-  public int getDonorId() {
-    return donorId;
+  public Integer getDonorId() {
+    Integer result =null;
+    if(donorId != null){
+      result =donorId;
+    }
+    return result;
   }
 
   public void setDonorId(int donorId) {
