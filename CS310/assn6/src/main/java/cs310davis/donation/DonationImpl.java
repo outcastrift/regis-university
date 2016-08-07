@@ -105,7 +105,11 @@ public class DonationImpl {
     }
     return isRemoved;
   }
-
+  /**
+   * Method to get a single donation specified by
+   * @param donationId the ID of the donation to return.
+   * @return the Donation specified by the DonationId.
+   * **/
   public Donation getDonationById(Integer donationId) {
     return donations.get(donationId);
   }
