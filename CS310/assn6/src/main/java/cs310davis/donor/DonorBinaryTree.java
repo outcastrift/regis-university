@@ -1,26 +1,12 @@
 package cs310davis.donor;
 
-import java.util.concurrent.ThreadLocalRandom;
 
 public class DonorBinaryTree {
 
+  /**
+   * Root of the BinarySearchTree
+   * **/
   private DonorNode rootOfTree;
-
-  public static void main(String[] args) {
-    DonorBinaryTree theTree = new DonorBinaryTree();
-    for (int x = 0; x < 15; x++) {
-      int donorID = ThreadLocalRandom.current().nextInt(0, 50);
-      Donor d = new Donor();
-      d.setDonorId(donorID);
-      theTree.addNode(d);
-    }
-    theTree.traverseTreeInOrder(theTree.rootOfTree);
-    // Find the node with donorId 75
-    System.out.println("\nNode with the donorId 75");
-
-    System.out.println(theTree.findDonorInTree(75));
-
-  }
   /**
    * Method to add a Donor to the BinaryTree
    * @param donor the donor to be added
@@ -91,68 +77,70 @@ public class DonorBinaryTree {
  * **/
   public boolean remove(int donorId) {
     boolean wasRemoved =true;
-    DonorNode focusNode = rootOfTree;
-    DonorNode parent = rootOfTree;
+    DonorNode deleteNode = rootOfTree;
+    DonorNode parentDeleteNode = rootOfTree;
     boolean wasToTheLeft = true;
     while(wasRemoved){
-      while (focusNode.getDonorId() != donorId) {
-        parent = focusNode;
-        if (donorId < focusNode.getDonorId()) {
+      while (deleteNode.getDonorId() != donorId) {
+        parentDeleteNode = deleteNode;
+        if (donorId < deleteNode.getDonorId()) {
           wasToTheLeft = true;
-          focusNode = focusNode.getLeftChild();
+          deleteNode = deleteNode.getLeftChild();
         } else {
           wasToTheLeft = false;
-          focusNode = focusNode.getRightChild();
+          deleteNode = deleteNode.getRightChild();
         }
-        if (focusNode == null) {
+        if (deleteNode == null) {
           wasRemoved= false;
         }
       }
-      if (focusNode.getLeftChild() == null && focusNode.getRightChild() == null) {
-        if (focusNode == rootOfTree) {
+      if (deleteNode.getLeftChild() == null && deleteNode.getRightChild() == null) {
+        if (deleteNode == rootOfTree) {
           rootOfTree = null;
         }
         else if (wasToTheLeft) {
-          parent.setLeftChild(null);
+          parentDeleteNode.setLeftChild(null);
         }
         else{
-          parent.setRightChild(null);
+          parentDeleteNode.setRightChild(null);
         }
       }
-      else if (focusNode.getRightChild() == null) {
-        if (focusNode == rootOfTree) {
-          rootOfTree = focusNode.getLeftChild();
+      else if (deleteNode.getRightChild() == null) {
+        if (deleteNode == rootOfTree) {
+          rootOfTree = deleteNode.getLeftChild();
         }
         else if (wasToTheLeft) {
-          parent.setLeftChild(focusNode.getLeftChild());
+          parentDeleteNode.setLeftChild(deleteNode.getLeftChild());
         }
         else {
-          parent.setRightChild(focusNode.getLeftChild());
+          parentDeleteNode.setRightChild(deleteNode.getLeftChild());
         }
       }
-      else if (focusNode.getLeftChild() == null) {
-        if (focusNode == rootOfTree) {
-          rootOfTree = focusNode.getRightChild();
+      else if (deleteNode.getLeftChild() == null) {
+        if (deleteNode == rootOfTree) {
+          rootOfTree = deleteNode.getRightChild();
         }
         else if (wasToTheLeft) {
-          parent.setLeftChild(focusNode.getRightChild());
+          parentDeleteNode.setLeftChild(deleteNode.getRightChild());
         }
         else {
-          parent.setRightChild(focusNode.getRightChild());
+          parentDeleteNode.setRightChild(deleteNode.getRightChild());
         }
       }
       else {
-        DonorNode replacement = getReplacementNode(focusNode);
-        if (focusNode == rootOfTree) {
-          rootOfTree = replacement;
+        DonorNode newDonorNode = getNodeForReplacement(deleteNode);
+
+
+        if (deleteNode == rootOfTree) {
+          rootOfTree = newDonorNode;
         }
         else if (wasToTheLeft) {
-          parent.setLeftChild(replacement);
+          parentDeleteNode.setLeftChild(newDonorNode);
         }
         else {
-          parent.setRightChild(replacement);
+          parentDeleteNode.setRightChild(newDonorNode);
         }
-        replacement.setLeftChild(focusNode.getLeftChild());
+        newDonorNode.setLeftChild(deleteNode.getLeftChild());
       }
       break;
     }
@@ -162,18 +150,18 @@ public class DonorBinaryTree {
    * Method to determine the appropriate replacement node for when a node is being removed. This method is private and
    * will only ever be called by the remove method.
    * **/
-  private DonorNode getReplacementNode(DonorNode replacedNode) {
-    DonorNode replacementParent = replacedNode;
-    DonorNode replacement = replacedNode;
-    DonorNode focusNode = replacedNode.getRightChild();
-    while (focusNode != null) {
+  private DonorNode getNodeForReplacement(DonorNode incomingNode) {
+    DonorNode replacementParent = incomingNode;
+    DonorNode replacement = incomingNode;
+    DonorNode nodeToReplace = incomingNode.getRightChild();
+    while (nodeToReplace != null) {
       replacementParent = replacement;
-      replacement = focusNode;
-      focusNode = focusNode.getLeftChild();
+      replacement = nodeToReplace;
+      nodeToReplace = nodeToReplace.getLeftChild();
     }
-    if (replacement != replacedNode.getRightChild()) {
+    if (replacement != incomingNode.getRightChild()) {
       replacementParent.setLeftChild(replacement.getRightChild());
-      replacement.setRightChild(replacedNode.getRightChild());
+      replacement.setRightChild(incomingNode.getRightChild());
     }
     return replacement;
 
