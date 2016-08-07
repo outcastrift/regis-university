@@ -46,9 +46,10 @@ public class DonorBinaryTree {
     }
   }
   /**
-   * This method traverses the entire tree and calls the .toString method of every Donor found during traversal.
+   * Private method to traverses the entire tree and calls the .toString method of every Donor found during traversal.
    * **/
   public void traverseTreeInOrder(DonorNode donorNode) {
+
     if (donorNode != null) {
       traverseTreeInOrder(donorNode.getLeftChild());
       System.out.println(donorNode.toString());
@@ -136,7 +137,7 @@ public class DonorBinaryTree {
         }
       }
       else {
-        DonorNode newDonorNode = getNodeForReplacement(deleteNode);
+        DonorNode newDonorNode = getReplacementDonorNode(deleteNode);
 
 
         if (deleteNode == rootOfTree) {
@@ -157,8 +158,10 @@ public class DonorBinaryTree {
   /**
    * Method to determine the appropriate replacement node for when a node is being removed. This method is private and
    * will only ever be called by the remove method.
+   * @param incomingNode the donor node to perform replacement logic on
+   * @return the donorNode that the logic has been performed on.
    * **/
-  private DonorNode getNodeForReplacement(DonorNode incomingNode) {
+  private DonorNode getReplacementDonorNode(DonorNode incomingNode) {
     DonorNode replacementParent = incomingNode;
     DonorNode replacement = incomingNode;
     DonorNode nodeToReplace = incomingNode.getRightChild();
