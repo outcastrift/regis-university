@@ -53,7 +53,13 @@ public class CS310Davis {
   public static void main(String[] args) {
     // Call the method to read and process the data file.
     processMainCharityFile();
+    traverseAndDisplayDatabases();
     processTaxExemptionsFile();
+  }
+
+  private static void traverseAndDisplayDatabases() {
+    donorImpl.traverseTreeInOrder();
+    donationImpl.traverseTreeInOrder();
   }
 
   /**

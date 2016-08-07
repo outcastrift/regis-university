@@ -1,6 +1,14 @@
 package cs310davis.donor;
 
-
+/**
+ * This software was created for Regis University's CS310 course.
+ * rights to this software belong to Samuel Davis
+ * appropriate licenses and restrictions apply.
+ *
+ * Class Description
+ * This class is the implementation of a BinarySearchTree for Donors.
+ * @author Samuel Davis created on 8/7/16.
+ */
 public class DonorBinaryTree {
 
   /**

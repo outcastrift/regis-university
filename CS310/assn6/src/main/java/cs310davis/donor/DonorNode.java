@@ -21,7 +21,7 @@ public class DonorNode {
    **/
   public String toString() {
 
-    return donor.toString() + " has a donor id number of " + donorId;
+    return donor.toString();
 
   }
 

@@ -61,17 +61,21 @@ public class DonorImpl {
   public boolean isIdUnique(int id) {
     boolean isUnique = true;
 
-    if(donorBinaryTree.getRootOfTree() != null){
-      if(donorBinaryTree.findDonorInTree(id) != null){
+    if(donorBinaryTree.getRootOfTree() != null) {
+      if (donorBinaryTree.findDonorInTree(id) != null) {
         //Donor with specified ID was already added to the database.
-        isUnique =false;
+        isUnique = false;
       }
     }
-
 
     return isUnique;
   }
 
+  public void traverseTreeInOrder(){
+    System.out.println("Beginning to Traverse the Donor Binary Tree \nDonor List:\n");
+
+    donorBinaryTree.traverseTreeInOrder(donorBinaryTree.getRootOfTree());
+  }
   /**
    * Method to get specified donor from the list.
    *
