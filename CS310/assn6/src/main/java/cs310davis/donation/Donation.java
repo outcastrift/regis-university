@@ -87,22 +87,6 @@ public class Donation {
 
   }
 
-  /**
-   * Gets donation attributes.
-   *
-   * @param donation the donation
-   */
-  public static void getDonationAttributes(Donation donation) {
-    System.out.println(donation.getDonationId() + "\n");
-    System.out.println(donation.getDonorId() + "\n");
-    System.out.println(donation.getDonationDescription() + "\n");
-    System.out.println(donation.getDonationAmount() + "\n");
-    System.out.println(donation.getDonationDate() + "\n");
-    System.out.println(donation.getIsDonationTaxDeductible() + "\n");
-    System.out.println(donation.getDonationCheckNumber() + "\n");
-
-
-  }
 
   /**
    * Gets donation id.
@@ -254,6 +238,7 @@ public class Donation {
     if (!donation.getDonorId().equals(donorId)) {
       isEqual = false;
     }
+
     if (!donation.getIsDonationTaxDeductible() == isDonationTaxDeductible) {
       isEqual = false;
     }
