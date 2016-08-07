@@ -1,4 +1,4 @@
-DONOR,ADD,1,George,Washington,gwashington@mtvernon.com,202-123-4567
+DONOR,ADD,1,Monster,Man,gwashington@mtvernon.com,202-123-4567
 DONATION,ADD,101,1,Payroll deduction,22.22,07/04/1776,Y,1001
 DONATION,ADD,102,1,Event contribution,200.00,07/05/1776,Y,99
 DONATION,ADD,103,1,Contribution,100.00,08/10/1776,N,1002
