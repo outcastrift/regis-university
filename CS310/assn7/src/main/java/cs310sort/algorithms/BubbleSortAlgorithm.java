@@ -11,8 +11,11 @@ package cs310sort.algorithms;
  */
 public class BubbleSortAlgorithm extends SortAlgorithm {
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  protected void doSort(Integer[] array) {
+  protected void performSorting(Integer[] array) {
     for (int i = 0; i < array.length; ++i) {
       boolean swapFlag = false;
       for (int j = 0; j < array.length - i - 1; ++j) {
@@ -26,7 +29,9 @@ public class BubbleSortAlgorithm extends SortAlgorithm {
       }
     }
   }
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public AlgorithmType getType() {
     return AlgorithmType.BUBBLE_SORT;

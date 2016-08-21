@@ -11,11 +11,15 @@ package cs310sort.algorithms;
  * @author Samuel Kyle Davis
  */
 public class QuickSortAlgorithm extends SortAlgorithm {
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  protected void doSort(Integer[] array) {
+  protected void performSorting(Integer[] array) {
     quicksort(array, 0, array.length - 1);
   }
+
+
 
   private void quicksort(Integer[] array, Integer left, Integer right) {
     if (left < right) {
@@ -28,6 +32,7 @@ public class QuickSortAlgorithm extends SortAlgorithm {
       }
     }
   }
+
 
   private int partition(Integer[] array, Integer left, Integer right) {
     int pivotIndex = (right + left) / 2;
@@ -47,7 +52,9 @@ public class QuickSortAlgorithm extends SortAlgorithm {
 
     return storeIndex;
   }
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public AlgorithmType getType() {
     return AlgorithmType.QUICK_SORT;

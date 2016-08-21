@@ -9,9 +9,11 @@ package cs310sort.algorithms;
  * @author Samuel Kyle Davis
  */
 public class InsertionSortAlgorithm extends SortAlgorithm {
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void doSort(Integer[] array) {
+  public void performSorting(Integer[] array) {
     for (int i = 1; i < array.length; ++i) {
       int j = i;
       while (j > 0 && less(array[j], array[j - 1])) {
@@ -20,7 +22,9 @@ public class InsertionSortAlgorithm extends SortAlgorithm {
       }
     }
   }
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public AlgorithmType getType() {
     return AlgorithmType.INSERTION_SORT;

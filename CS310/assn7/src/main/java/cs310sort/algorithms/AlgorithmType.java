@@ -8,18 +8,23 @@ package cs310sort.algorithms;
  * @author Samuel Kyle Davis
  */
 public enum AlgorithmType {
-  BUBBLE_SORT("Bubble sort"),
-  INSERTION_SORT("Insertion sort"),
-  MERGE_SORT("Merge sort"),
-  QUICK_SORT("Quick sort"),
-  SELECTION_SORT("Select sort");
+  BUBBLE_SORT("BubbleSort"),
+  INSERTION_SORT("InsertionSort"),
+  QUICK_SORT("QuickSort");
 
   private String name;
 
+  /**
+   * Public constructor.
+   * @param name the name of the type.
+   * **/
   private AlgorithmType(String name) {
     this.name = name;
   }
 
+  /**
+   * Returns the type of this Algorithm.
+   * **/
   public String getValue() {
     return name;
   }

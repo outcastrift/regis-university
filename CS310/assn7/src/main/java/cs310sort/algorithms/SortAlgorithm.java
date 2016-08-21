@@ -16,18 +16,32 @@ public abstract class SortAlgorithm {
   private long startTime;
   private long endTime;
 
-  protected abstract void doSort(Integer[] array);
+  /**
+   * Method to perform a sort on the specified array.
+   * Depending on the implementation class will determine which sort method is used.
+   * @param array the array to sort.
+   * **/
+  protected abstract void performSorting(Integer[] array);
 
+  /**
+   * Returns the type of this SortAlgorithm.
+   * **/
   public abstract AlgorithmType getType();
 
+  /**
+   * Method to sort the specified array, from external to this class this is the only method to
+   * fire the performSorting method annotated above.
+   * @param array the array to sort.
+   * **/
   public Speed sort(Integer[] array) {
     startTime = endTime = 0; //swaps = comparisons = 0;
     startTime = System.nanoTime();
-    doSort(array);
+    performSorting(array);
     endTime = System.nanoTime();
 
     return calcSpeed();
   }
+
 
   private Speed calcSpeed() {
     return SpeedBuilder.newInstance()

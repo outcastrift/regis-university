@@ -41,11 +41,19 @@ public class CS310Sort {
     testRun(3);
     printResults();
   }
+  /**
+   * Method to print results to the specified output file.
+   * **/
   private static void printResults(){
     resultPrinter.printResults("sortResults.txt",results);
 
   }
 
+  /**
+   * Method to perform a test run with a specified run number.
+   * @param runNumber the number of the run.
+   *
+   * **/
   private static void testRun(int runNumber){
     ArrayList<Speed> speedsForAlgos = new ArrayList<Speed>();
     //populate arrays for test run
@@ -86,6 +94,12 @@ public class CS310Sort {
 
   }
 
+  /**
+   * Simple method to determine if the sorting was accurate or inaccurate and print
+   * a message determining whether it was or wasn't.
+   * @param sortType type of Sortign Algorithm used.
+   * @param dataSet the set of data to be validated.
+   * **/
   private static void validOrInvalidMessage(String sortType, Integer[] dataSet){
     if(isSorted(dataSet)){
       System.out.println(sortType +" was validated and determined to be correct. ");
@@ -110,13 +124,7 @@ public class CS310Sort {
 
     return sorted;
   }
-
-
-
-
-
-
-
+  
 
   /**
    * Convenience method to create a array with a specified number of elements and then populate with

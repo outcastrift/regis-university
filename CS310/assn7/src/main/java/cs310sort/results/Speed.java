@@ -13,26 +13,28 @@ public class Speed {
     private AlgorithmType algorithmType;
     private long time;
 
+    /**
+     * Public Constructor.
+     * **/
     public Speed(AlgorithmType algorithmType, long time) {
         super();
         this.algorithmType = algorithmType;
         this.time = time;
 
     }
-
+    /**
+     * Returns the AlgorithmType of this Speed Object.
+     * **/
     public AlgorithmType getAlgorithmType() {
         return algorithmType;
     }
 
-    public void setAlgorithmType(AlgorithmType algorithmType) {
-        this.algorithmType = algorithmType;
-    }
-
+    /**
+     * Returns the amount of time it took for the algorithm to sort a array.
+     * **/
     public long getTime() {
         return time;
     }
 
-    public void setTime(long time) {
-        this.time = time;
-    }
+
 }

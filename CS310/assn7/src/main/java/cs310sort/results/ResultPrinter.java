@@ -15,7 +15,7 @@ import cs310sort.algorithms.AlgorithmType;
  * @author Samuel Kyle Davis
  **/
 public class ResultPrinter {
-    private static final String hashLine ="#####################################";
+    private static final String hashLine ="#########################################################################################";
 
     private static final String runLine = "                      Run 1               Run 2               Run 3               Average";
 
@@ -75,7 +75,7 @@ public class ResultPrinter {
                     +generatePaddedString(String.valueOf(quick2))
                     +generatePaddedString(String.valueOf(quick3))
                     +generatePaddedString(String.valueOf(quickAverage)));
-
+            writer.println(hashLine);
         }catch (IOException e) {
             e.printStackTrace();
         }finally{

@@ -15,23 +15,33 @@ public class SpeedBuilder {
 
     private SpeedBuilder(){}
 
+    /**
+     * Creates a new instance of this SpeedBuilder.
+     * **/
     public static SpeedBuilder newInstance() {
         return new SpeedBuilder();
     }
 
-
+    /**
+     * Sets the AlgorithmType for this sort Algorithm.
+     * **/
     public SpeedBuilder setAlgorithmType(AlgorithmType algorithmType) {
         this.algorithmType = algorithmType;
         return this;
     }
 
 
-
+    /**
+     * Sets the amount of time it took to complete a sort with a algorithm.
+     * **/
     public SpeedBuilder setTime(long time) {
         this.time = time;
         return this;
     }
 
+    /**
+     * Returns a Speed object containing all the set variables.
+     * **/
     public Speed build() {
         return new Speed(algorithmType, time);
     }
