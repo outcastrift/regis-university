@@ -17,7 +17,7 @@ import cs310sort.algorithms.AlgorithmType;
 public class ResultPrinter {
     private static final String hashLine ="#########################################################################################";
 
-    private static final String runLine = "                      Run 1               Run 2               Run 3               Average";
+    private static final String runLine = "                     Run 1               Run 2               Run 3               Average";
 
 
     /**

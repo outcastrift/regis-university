@@ -35,9 +35,9 @@ public abstract class SortAlgorithm {
    * **/
   public Speed sort(Integer[] array) {
     startTime = endTime = 0; //swaps = comparisons = 0;
-    startTime = System.nanoTime();
+    startTime = System.currentTimeMillis();
     performSorting(array);
-    endTime = System.nanoTime();
+    endTime = System.currentTimeMillis();
 
     return calcSpeed();
   }
