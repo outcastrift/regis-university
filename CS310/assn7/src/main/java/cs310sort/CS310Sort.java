@@ -124,7 +124,7 @@ public class CS310Sort {
 
     return sorted;
   }
-  
+
 
   /**
    * Convenience method to create a array with a specified number of elements and then populate with
