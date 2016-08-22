@@ -1,0 +1,36 @@
+
+Firstly a sorting algorithm is an algorithm that puts elements of a list in a certain order.
+One of the most commonly used orders is numerical which is what was used in all of my test cases.
+I tested three separate algorithms Insertion Sort , Bubble Sort , and Quick Sort. For the remainder
+of this paper I am going to attempt to detail what I expected from each algorithm and how it differed
+or matched what I found in my test results.
+
+Insertion Sort :
+Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list.
+Each iteration , insertion sort removes one element from the input data, finds the location it belongs
+within the sorted list and inserts it there. This repeats until there isn’t any more data to iterate through.
+
+In my implementation I sorted in place, which means for any spot I am currently iterating on I check
+it against the largest value in the array, if it’s larger I leave it in place and move on to the next.
+If it’s smaller I find the correct position within the sorted list and shift all the elements accordingly.
+
+The Big O expectation for this algorithm is O(n^2) , the worst case scenario. In my tests I saw markedly
+faster improvement over O(n^2), sometimes twice as fast as O(n^2). (Roughly 1.8 times faster than bubble sort)
+
+Bubble Sort : 
+The bubble sort is considered to be the simplest sorting algorithm and also the most inefficient. 
+The way the algorithm works is that it repeatedly steps through the array, compares each adjacent items
+and swaps them if they are in the wrong order. This continues until everything is in the correct order.
+
+The Big O expectation for this algorithm is O(n^2) in my tests I saw no difference between the
+expectation and reality, this was the slowest of the algorithms tested.
+
+
+QuickSort : 
+The QuickSort algorithm is a divide and conquer algorithm. It uses recursion to sort the array.
+It uses a pivot point (basically creating two lists from there one for large elements one for small),
+passes through the sorting list and based on a certain condition sorts the data set from the two lists.
+
+The Big O expectation for this algorithm is worst case O(n^2) and best case O(n log n) in my tests
+I consistently saw this algorithm outperform the other two. QuickSort was 604 times faster than
+Bubble Sort and 331.8 times faster than the Insertion Sort algorithm.
